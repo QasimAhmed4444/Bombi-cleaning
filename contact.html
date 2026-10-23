@@ -349,7 +349,7 @@
     .page-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(22,30,25,.88) 0%, rgba(22,30,25,.66) 55%, rgba(22,30,25,.45) 100%), url("assets/hero-office-1800.webp") center 40% / cover; }
     .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: rgba(251,248,242,.72); }
     .crumbs a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
-    .page-hero h1 { margin-top: 14px; font-family: var(--sans); font-weight: 700; font-size: clamp(36px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -0.03em; color: #FBF8F2; }
+    .page-hero h1 { margin-top: 0; font-family: var(--sans); font-weight: 700; font-size: clamp(36px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -0.03em; color: #FBF8F2; }
     .page-hero h1 em { font-family: var(--serif); font-weight: 400; color: var(--gold); }
     .page-hero p { margin: 12px 0 0; max-width: 54ch; font-size: clamp(16px, 1.4vw, 18px); color: rgba(251,248,242,.86); }
 
@@ -437,7 +437,6 @@
     <!-- ═════════ Page header ═════════ -->
     <section class="page-hero" aria-labelledby="contact-title">
       <div class="wrap">
-        <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Contact</span></nav>
         <h1 id="contact-title">Contact <em>Us</em></h1>
         <p>Questions about a clean, a quote or an existing booking? Send us a message or give us a call, and we'll get back to you.</p>
       </div>
@@ -467,15 +466,13 @@
             <label class="field" for="c-name"><span>Name</span><input id="c-name" name="name" type="text" placeholder="Your name" autocomplete="name" required /></label>
             <label class="field" for="c-email"><span>Email</span><input id="c-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required /></label>
           </div>
-          <label class="field" for="c-subject"><span>Subject</span><input id="c-subject" name="subject" type="text" placeholder="How can we help?" required /></label>
+          <div class="c-row">
+            <label class="field" for="c-phone"><span>WhatsApp / Phone number</span><input id="c-phone" name="phone" type="tel" placeholder="(734) 555-0123" autocomplete="tel" inputmode="tel" required /></label>
+            <label class="field" for="c-subject"><span>Subject</span><input id="c-subject" name="subject" type="text" placeholder="How can we help?" required /></label>
+          </div>
           <label class="field" for="c-message"><span>Your message <em class="count" id="c-count" aria-live="polite">0/500</em></span><textarea id="c-message" name="message" rows="5" maxlength="500" placeholder="Tell us about your space, preferred dates or any questions…" required></textarea></label>
           <p class="c-error" id="c-error" role="alert" hidden></p>
           <button class="btn btn-forest c-submit" type="submit">Send message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          <p class="c-note">Sending opens your email app with the message ready to go to admin@bambicleaning.com.</p>
-          <div class="c-success" id="c-success" role="status" hidden>
-            <b>Your message is ready to send.</b>
-            <span>Your email app should have opened with everything filled in. Just press send. If it didn't open, email us at admin@bambicleaning.com or call (734) 360-6176.</span>
-          </div>
         </form>
       </div></div>
     </section>
@@ -558,7 +555,6 @@
     const msg = $('#c-message');
     const count = $('#c-count');
     const err = $('#c-error');
-    const ok = $('#c-success');
     msg.addEventListener('input', () => { count.textContent = `${msg.value.length}/500`; });
     $$('input, textarea', form).forEach((el) => el.addEventListener('input', () => {
       el.closest('.field').classList.remove('invalid');
@@ -566,11 +562,12 @@
     }));
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const fields = { name: $('#c-name'), email: $('#c-email'), subject: $('#c-subject'), message: msg };
+      const fields = { name: $('#c-name'), email: $('#c-email'), phone: $('#c-phone'), subject: $('#c-subject'), message: msg };
       const problems = [];
       Object.values(fields).forEach((el) => el.closest('.field').classList.remove('invalid'));
       if (!fields.name.value.trim()) problems.push(['name', 'Enter your name.']);
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email.value.trim())) problems.push(['email', 'Enter a valid email address.']);
+      if (fields.phone.value.replace(/\D/g, '').length < 7) problems.push(['phone', 'Enter a WhatsApp or phone number.']);
       if (!fields.subject.value.trim()) problems.push(['subject', 'Add a subject.']);
       if (!msg.value.trim()) problems.push(['message', 'Write your message.']);
       if (problems.length) {
@@ -580,9 +577,8 @@
         fields[problems[0][0]].focus();
         return;
       }
-      const body = `Name: ${fields.name.value.trim()}\nEmail: ${fields.email.value.trim()}\n\n${msg.value.trim()}`;
+      const body = `Name: ${fields.name.value.trim()}\nEmail: ${fields.email.value.trim()}\nWhatsApp / Phone: ${fields.phone.value.trim()}\n\n${msg.value.trim()}`;
       location.href = `mailto:admin@bambicleaning.com?subject=${encodeURIComponent(fields.subject.value.trim())}&body=${encodeURIComponent(body)}`;
-      ok.hidden = false;
     });
 
     /* Subtle reveal on scroll */
