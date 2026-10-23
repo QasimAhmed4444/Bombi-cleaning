@@ -137,7 +137,9 @@
     .slider { position: relative; height: calc(100vh - 80px); height: calc(100svh - 80px); min-height: 540px; overflow: hidden; }
     .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 1s var(--ease), visibility 0s 1s; }
     .slide.is-active { opacity: 1; visibility: visible; transition: opacity 1s var(--ease), visibility 0s; }
-    .slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+    /* show each photo whole (no crop); a blurred copy fills the spare space around it */
+    .slide-bg { position: absolute; inset: -60px; background-position: center; background-size: cover; filter: blur(34px) saturate(1.05) brightness(.82); }
+    .slide img { position: absolute; top: 0; right: 0; bottom: 0; left: auto; height: 100%; width: auto; max-width: none; aspect-ratio: 3 / 2; object-fit: cover; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18%); mask-image: linear-gradient(90deg, transparent 0, #000 18%); }
     /* subtle forest-green shade on the left for contrast, no white wash */
     .slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(22,30,25,.64) 0%, rgba(22,30,25,.44) 32%, rgba(22,30,25,.1) 60%, rgba(22,30,25,0) 74%); }
     .slide .wrap { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; padding-top: clamp(56px, 8vw, 104px); }
@@ -303,6 +305,7 @@
       .slider { min-height: 500px; }
       .slide::after { background: linear-gradient(180deg, rgba(22,30,25,.66) 0%, rgba(22,30,25,.4) 38%, rgba(22,30,25,.06) 68%, rgba(22,30,25,0) 82%); }
       .slide .wrap { padding-top: 40px; }
+      .slide img { top: auto; bottom: 14%; left: 0; right: 0; width: 100%; height: auto; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 16%, #000 84%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 16%, #000 84%, transparent 100%); }
       .steps { grid-template-columns: 1fr; }
       .areas { grid-template-columns: 1fr; }
       .map-wrap { justify-self: center; }
@@ -401,6 +404,7 @@
     <section class="hero" aria-roledescription="carousel" aria-label="Bambi Cleaning highlights">
       <div class="slider first">
         <div class="slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 4">
+          <div class="slide-bg" style="background-image:url('assets/hero-living-900.webp')" aria-hidden="true"></div>
           <img src="assets/hero-living-1800.webp" srcset="assets/hero-living-900.webp 900w, assets/hero-living-1800.webp 1800w" sizes="100vw" alt="Bright, tidy living room with a white sofa and an olive tree" width="1800" height="1200" fetchpriority="high" />
           <div class="wrap"><div class="slide-copy">
             <h1>A cleaner home.<br />A calmer life.</h1>
@@ -408,6 +412,7 @@
           </div></div>
         </div>
         <div class="slide" role="group" aria-roledescription="slide" aria-label="2 of 4">
+          <div class="slide-bg" style="background-image:url('assets/hero-kitchen-900.webp')" aria-hidden="true"></div>
           <img src="assets/hero-kitchen-1800.webp" srcset="assets/hero-kitchen-900.webp 900w, assets/hero-kitchen-1800.webp 1800w" sizes="100vw" alt="Spotless white kitchen with an island" width="1800" height="1200" fetchpriority="low" decoding="async" />
           <div class="wrap"><div class="slide-copy">
             <h2>Every room,<br />done right.</h2>
@@ -415,6 +420,7 @@
           </div></div>
         </div>
         <div class="slide" role="group" aria-roledescription="slide" aria-label="3 of 4">
+          <div class="slide-bg" style="background-image:url('assets/hero-bedroom-900.webp')" aria-hidden="true"></div>
           <img src="assets/hero-bedroom-1800.webp" srcset="assets/hero-bedroom-900.webp 900w, assets/hero-bedroom-1800.webp 1800w" sizes="100vw" alt="Freshly made guest bed in a bright bedroom" width="1800" height="1200" fetchpriority="low" decoding="async" />
           <div class="wrap"><div class="slide-copy">
             <h2>Guest-ready,<br />every stay.</h2>
@@ -422,10 +428,11 @@
           </div></div>
         </div>
         <div class="slide" role="group" aria-roledescription="slide" aria-label="4 of 4">
-          <img src="assets/hero-bathroom-1800.webp" srcset="assets/hero-bathroom-900.webp 900w, assets/hero-bathroom-1800.webp 1800w" sizes="100vw" alt="Bright white bathroom with a freestanding tub and fresh plants" width="1800" height="1200" fetchpriority="low" decoding="async" />
+          <div class="slide-bg" style="background-image:url('assets/hero-dining-900.webp')" aria-hidden="true"></div>
+          <img src="assets/hero-dining-1800.webp" srcset="assets/hero-dining-900.webp 900w, assets/hero-dining-1800.webp 1800w" sizes="100vw" alt="Bright dining room with a round table and big city-view windows" width="1800" height="1200" fetchpriority="low" decoding="async" />
           <div class="wrap"><div class="slide-copy">
-            <h2>Bathrooms that<br />sparkle.</h2>
-            <p>Tubs, tiles and fixtures scrubbed, shined and fresh.</p>
+            <h2>Ready for<br />every guest.</h2>
+            <p>Dining areas dusted, polished and set to impress.</p>
           </div></div>
         </div>
 
