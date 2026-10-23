@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book a Clean — Bambi Cleaning</title>
+  <meta name="description" content="Book your Bambi Cleaning visit in two quick steps: choose your clean, see your price, and add your details." />
+  <meta name="theme-color" content="#F6F4EF" />
+  <link rel="icon" href="https://www.bambicleaning.com/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Layout: two-tier header → full-bleed hero slider with an overlapping price bar → calm, evenly spaced sections on an ivory ground */
+    :root {
+      --bg: #F6F4EF;          /* ivory ground */
+      --surface: #FFFFFF;
+      --ink: #18211C;         /* deep forest ink */
+      --ink-2: #4A544D;
+      --ink-3: #7A847D;
+      --brand: #55634E;       /* Bambi sage, deepened */
+      --brand-d: #26302A;
+      --brand-l: #E7EBE3;
+      --gold: #CDA770;        /* Bambi sand, the call-to-action colour */
+      --gold-d: #B48D55;
+      --gold-l: #F4EBDC;
+      --line: #E2DED5;
+      --ink-btn: #1D2125;
+      --forest: #1F3D2B;      /* primary header action */
+
+      --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+      --sans: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+      --r: 14px;
+      --r-sm: 10px;
+      --shadow: 0 1px 2px rgba(24,33,28,.04), 0 10px 30px -14px rgba(24,33,28,.18);
+      --shadow-lg: 0 2px 6px rgba(24,33,28,.05), 0 30px 60px -28px rgba(24,33,28,.32);
+      --ease: cubic-bezier(.22, .61, .36, 1);
+      --max: 1240px;
+      --gutter: clamp(16px, 4vw, 40px);
+      --section: clamp(56px, 6.5vw, 92px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: var(--sans); font-size: 16px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; color: inherit; }
+    :focus-visible { outline: 2px solid var(--gold-d); outline-offset: 3px; border-radius: 6px; }
+    ::selection { background: var(--gold-l); }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+    .section { padding-block: var(--section); }
+
+    /* Type */
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; letter-spacing: -0.015em; text-wrap: balance; }
+    h1 { font-size: clamp(40px, 5.6vw, 72px); line-height: 1.04; }
+    h2 { font-size: clamp(28px, 3.2vw, 42px); line-height: 1.08; }
+    h3 { font-size: 23px; line-height: 1.2; }
+    h1 em, h2 em { font-style: italic; color: var(--brand); }
+    .on-dark h1 em, .on-dark h2 em { color: var(--gold); }
+    .kicker { display: inline-block; font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-d); }
+    .lede { font-size: 18px; color: var(--ink-2); margin: 0; max-width: 54ch; }
+    .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px 40px; margin-bottom: clamp(36px, 4.5vw, 56px); }
+    .sec-head > div { display: grid; gap: 14px; max-width: 640px; }
+    .sec-head.center { justify-content: center; text-align: center; }
+    .sec-head.center > div { justify-items: center; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      height: 50px; padding: 0 24px; border-radius: var(--r-sm); border: 1px solid transparent;
+      font-weight: 600; font-size: 15px; letter-spacing: .005em; white-space: nowrap; cursor: pointer;
+      transition: background-color .2s, border-color .2s, color .2s, box-shadow .2s;
+    }
+    .btn svg { width: 17px; height: 17px; flex: none; }
+    .btn-gold { background: var(--gold); color: var(--ink); }
+    .btn-gold:hover { background: var(--gold-d); }
+    .btn-dark { background: var(--brand-d); color: #fff; }
+    .btn-dark:hover { background: var(--ink); }
+    .btn-line { border-color: var(--line); background: var(--surface); color: var(--ink); }
+    .btn-line:hover { border-color: var(--ink); }
+    .btn-glass { border-color: rgba(255,255,255,.45); color: #fff; background: rgba(255,255,255,.08); }
+    .btn-glass:hover { background: rgba(255,255,255,.18); }
+    .btn-sm { height: 42px; padding: 0 18px; font-size: 14px; }
+    .link-arrow { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14.5px; color: var(--brand-d); }
+    .link-arrow svg { width: 16px; height: 16px; transition: transform .2s var(--ease); }
+    .link-arrow:hover svg { transform: translateX(3px); }
+
+    /* ───────── Header ───────── */
+    .header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); border-bottom: 1px solid transparent; transition: border-color .2s, box-shadow .2s; }
+    .header.scrolled { border-bottom-color: var(--line); box-shadow: 0 6px 20px -16px rgba(24,33,28,.4); }
+    /* three columns: logo left, menu centred, actions right */
+    .header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; column-gap: 32px; height: 80px; }
+    .logo { grid-column: 1; justify-self: start; display: inline-flex; align-items: center; }
+    .logo img { height: 38px; width: auto; }
+    .nav { grid-column: 2; display: flex; align-items: center; justify-content: center; gap: 14px; }
+    .nav a { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 16px; border-radius: 10px; font-size: 14.5px; font-weight: 500; line-height: 1; color: var(--ink-2); white-space: nowrap; transition: background-color .2s, color .2s; }
+    .nav a svg { display: block; width: 18px; height: 18px; flex: none; color: var(--ink-3); transition: color .2s; }
+    .nav a:hover { background: var(--bg); color: var(--ink); }
+    .nav a:hover svg { color: var(--brand); }
+    /* current section: soft sage tint with darker matching text and icon, no size change */
+    .nav a.active { background: var(--brand-l); color: var(--brand-d); }
+    .nav a.active svg { color: var(--brand); }
+    .btn-head { height: 44px; padding: 0 18px; border-radius: 10px; font-size: 14.5px; font-weight: 700; }
+    .btn-ink { background: var(--ink-btn); color: #fff; }
+    .btn-ink:hover { background: #000; }
+    .btn-forest { background: var(--forest); color: #fff; }
+    .btn-forest:hover { background: #17301F; }
+    .head-actions { grid-column: 3; justify-self: end; display: flex; align-items: center; gap: 12px; }
+    .burger { display: none; width: 46px; height: 46px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface); cursor: pointer; place-items: center; }
+    .burger svg { width: 20px; height: 20px; }
+
+    .btn-head svg { width: 18px; height: 18px; }
+    .drawer { position: fixed; inset: 0; z-index: 60; display: flex; justify-content: flex-end; visibility: hidden; }
+    .drawer .scrim { position: absolute; inset: 0; background: rgba(24,33,28,.4); opacity: 0; transition: opacity .3s; }
+    .drawer .panel { position: relative; width: min(380px, 88vw); height: 100%; background: var(--surface); padding: 20px 24px 28px; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .35s var(--ease); overflow-y: auto; }
+    .drawer.open { visibility: visible; }
+    .drawer.open .scrim { opacity: 1; }
+    .drawer.open .panel { transform: none; }
+    .drawer .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .drawer nav a { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 18px; font-weight: 500; }
+    .drawer nav a svg { width: 16px; height: 16px; color: var(--ink-3); }
+    .drawer .foot { margin-top: auto; padding-top: 24px; display: grid; gap: 10px; }
+    .drawer .contact { margin-top: 14px; font-size: 14px; color: var(--ink-2); display: grid; gap: 4px; text-align: center; }
+
+    /* ───────── Hero slider ───────── */
+    .hero { position: relative; background: var(--brand-d); }
+    /* height follows width so each 3:2 photo keeps most of its scene */
+    /* hero fills the screen below the header */
+    .slider { position: relative; height: calc(100vh - 80px); height: calc(100svh - 80px); min-height: 540px; overflow: hidden; }
+    .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 1s var(--ease), visibility 0s 1s; }
+    .slide.is-active { opacity: 1; visibility: visible; transition: opacity 1s var(--ease), visibility 0s; }
+    .slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+    /* subtle forest-green shade on the left for contrast, no white wash */
+    .slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(22,30,25,.64) 0%, rgba(22,30,25,.44) 32%, rgba(22,30,25,.1) 60%, rgba(22,30,25,0) 74%); }
+    .slide .wrap { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; padding-top: clamp(56px, 8vw, 104px); }
+    .slide-copy { max-width: 560px; display: grid; gap: 16px; }
+    /* outgoing text leaves quickly so two slides' copy never overlap mid-fade */
+    .slide-copy > * { opacity: 0; transform: translateY(12px); transition: opacity .25s, transform .25s; }
+    .slide.is-active .slide-copy > * { opacity: 1; transform: none; transition: opacity .7s var(--ease) .35s, transform .7s var(--ease) .35s; }
+    .slide.is-active .slide-copy > :nth-child(2) { transition-delay: .45s; }
+    .slider.first .slide-copy > * { transition: none !important; }   /* first slide is fully visible on load */
+    .slide h1, .slide h2 { font-family: var(--sans); font-weight: 700; font-size: clamp(38px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.03em; color: #FBF8F2; }
+    .slide p { margin: 0; font-size: clamp(16px, 1.45vw, 19px); color: rgba(251,248,242,.9); max-width: 36ch; }
+
+    .slider-ui { position: absolute; left: 0; right: 0; bottom: 116px; z-index: 2; pointer-events: none; }
+    .slider-ui .wrap { display: flex; justify-content: space-between; align-items: center; }
+    .dots { display: flex; gap: 8px; pointer-events: auto; }
+    .dots button { width: 30px; height: 4px; padding: 0; border: 0; border-radius: 2px; background: rgba(255,255,255,.45); box-shadow: 0 0 0 1px rgba(22,30,25,.12); cursor: pointer; position: relative; overflow: hidden; }
+    .dots button::after { content: ""; position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; }
+    .dots button[aria-current="true"]::after { transform: scaleX(1); transition: transform var(--dur, 6s) linear; }
+    .slider.paused .dots button[aria-current="true"]::after, .reduce .dots button[aria-current="true"]::after { transition: none; }
+    .arrows { display: flex; gap: 8px; pointer-events: auto; }
+    .arrows button { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.55); background: rgba(22,30,25,.32); color: #fff; display: grid; place-items: center; cursor: pointer; transition: background-color .2s, border-color .2s; }
+    .arrows button:hover { background: rgba(22,30,25,.5); border-color: #fff; }
+    .arrows svg { width: 18px; height: 18px; }
+
+    /* Booking card overlapping the bottom of the slider */
+    .book { position: relative; z-index: 3; margin-top: -96px; }
+    .book-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-lg); padding: 18px 20px 20px; }
+    .book-card h2 { font-family: var(--sans); font-size: 15.5px; font-weight: 700; line-height: 1.3; letter-spacing: 0; }
+    .types { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+    .types button { position: relative; display: flex; align-items: center; gap: 10px; min-height: 54px; padding: 8px 30px 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-align: left; font-size: 13.5px; font-weight: 500; line-height: 1.25; color: var(--ink-2); cursor: pointer; transition: border-color .2s, background-color .2s, color .2s; }
+    .types button > svg { display: block; width: 22px; height: 22px; flex: none; color: var(--ink); }
+    .types button:hover { border-color: var(--brand); }
+    .types button[aria-pressed="true"] { background: var(--brand-l); border-color: var(--brand-l); color: var(--brand-d); }
+    .types .tick { position: absolute; right: 10px; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--brand-d); color: #fff; display: grid; place-items: center; opacity: 0; transform: scale(.6); transition: opacity .2s, transform .2s; }
+    .types .tick svg { width: 11px; height: 11px; }
+    .types button[aria-pressed="true"] .tick { opacity: 1; transform: none; }
+    .book-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 16px; margin-top: 14px; }
+    .book-row [data-room] { width: 164px; }
+    .q-label { display: block; font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px; }
+    .stepper { display: flex; align-items: center; justify-content: space-between; height: 38px; border: 1px solid var(--line); border-radius: 10px; padding: 0 4px; }
+    .stepper button { width: 28px; height: 28px; border-radius: 7px; border: 0; background: var(--bg); cursor: pointer; font-size: 17px; line-height: 1; transition: background-color .2s; }
+    .stepper button:hover { background: var(--brand-l); }
+    .stepper output { font-weight: 700; font-size: 15px; font-variant-numeric: tabular-nums; }
+    .book-row .btn { height: 42px; min-width: 200px; margin-left: auto; font-weight: 700; }
+
+    /* ───────── Section panels: each section sits in its own bordered container ───────── */
+    .block { padding-top: clamp(20px, 2.4vw, 32px); }
+    .block-last { padding-bottom: 0; }
+    .box { background: var(--surface); border: 1px solid #DAD5C9; border-radius: 20px; padding: clamp(18px, 2.4vw, 30px); }
+    .box .benefit, .box .step { background: var(--bg); }
+    .box .sec-head { margin-bottom: clamp(16px, 2vw, 22px); align-items: center; }
+    /* ───────── Team and benefits ───────── */
+    .ic { width: 48px; height: 48px; border-radius: 12px; background: var(--gold-l); color: var(--gold-d); display: grid; place-items: center; margin-bottom: 8px; }
+    .ic svg { width: 23px; height: 23px; }
+    .team { display: grid; grid-template-columns: 1.08fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: stretch; }
+    .team-media { position: relative; min-height: 340px; max-width: 100%; border-radius: var(--r); overflow: hidden; background: var(--brand-l); }   /* matches the height of the text column */
+    .team-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 50%; }
+    .team-copy { align-self: center; }
+    .team-copy h2 { margin-top: 10px; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.05; }
+    .team-copy h2 em { color: var(--brand); }
+    .benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: clamp(16px, 2vw, 24px); }
+    .benefit { display: grid; gap: 4px; align-content: start; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); transition: border-color .2s, box-shadow .2s; }
+    .benefit:hover { border-color: var(--brand-l); box-shadow: var(--shadow); }
+    .benefit .ic { width: 40px; height: 40px; border-radius: 10px; background: var(--brand-l); color: var(--brand-d); margin-bottom: 4px; }
+    .benefit h3 { font-family: var(--sans); font-size: 16px; font-weight: 600; letter-spacing: 0; line-height: 1.3; }
+    .benefit p { margin: 0; color: var(--ink-3); font-size: 14px; line-height: 1.45; }
+    .tight-top { padding-top: 0; }
+
+    /* ───────── Services ───────── */
+    .services { padding-top: clamp(20px, 2.4vw, 32px); }
+    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .svc { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; transition: box-shadow .25s, transform .25s var(--ease), border-color .25s; }
+    .svc:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); border-color: transparent; }
+    .svc .media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; max-width: 100%; }
+    .svc .media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+    .svc:hover .media img { transform: scale(1.04); }
+    .svc .price { position: absolute; top: 12px; left: 12px; background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+    .svc .body { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px 18px; flex: 1; }
+    .svc .body h3 { font-size: 20px; }
+    .svc .body p { margin: 0; color: var(--ink-2); font-size: 14px; line-height: 1.5; flex: 1; }
+    .svc .link-arrow { margin-top: 2px; font-size: 14px; }
+
+    /* ───────── How it works ───────── */
+    .how-head { text-align: center; margin-bottom: clamp(18px, 2.4vw, 28px); }
+    .how-head h2 { font-size: clamp(32px, 3.8vw, 48px); line-height: 1.05; }
+    .how-head p { margin: 6px 0 0; font-family: var(--serif); font-size: clamp(20px, 2vw, 26px); line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); }
+    .how-head p em { font-style: italic; color: var(--brand); }
+    .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .step { display: grid; gap: 14px; align-content: start; padding: 18px 20px 20px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r); }
+    .step-top { display: flex; align-items: center; gap: 14px; }
+    .step .n { width: 40px; height: 40px; flex: none; border-radius: 50%; background: var(--forest); color: #fff; display: grid; place-items: center; font-family: var(--serif); font-size: 16px; font-variant-numeric: lining-nums; }
+    .step h3 { font-size: clamp(19px, 1.7vw, 22px); line-height: 1.2; }
+    .step p { margin: 0; color: var(--ink-2); font-size: 15px; line-height: 1.55; }
+
+    /* ───────── Areas ───────── */
+    .areas { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; background: var(--surface); border: 1px solid #DAD5C9; border-radius: 20px; padding: clamp(18px, 2.4vw, 30px); }
+    .areas-copy { display: grid; gap: 16px; justify-items: start; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+    .chips span { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-size: 14px; font-weight: 500; }
+    .chips svg { width: 14px; height: 14px; color: var(--brand); }
+    .map { position: relative; aspect-ratio: 1 / 1; width: 100%; border-radius: var(--r); background: var(--bg); border: 1px solid var(--line); overflow: hidden; }
+    .map-wrap { width: 100%; max-width: 440px; justify-self: end; display: grid; gap: 6px; }
+    .map-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(.45) sepia(.12) saturate(.9); }
+    .map-area { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .map-area path { fill: rgba(85,99,78,.09); stroke: var(--brand); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+    .pin { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; z-index: 1; }
+    .pin i { width: 14px; height: 14px; border-radius: 50%; background: var(--brand-d); border: 2.5px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.35); transition: transform .2s; }
+    /* city names appear on hover (OpenStreetMap already prints most of them) */
+    .pin span { position: absolute; bottom: calc(100% + 6px); white-space: nowrap; font-size: 12px; font-weight: 600; background: var(--surface); border: 1px solid var(--line); padding: 3px 9px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,.12); pointer-events: none; }
+    /* every city is labelled; side/below variants keep neighbouring labels apart */
+    .pin.left span { bottom: auto; top: 50%; right: calc(100% + 6px); transform: translateY(-50%); }
+    .pin.right span { bottom: auto; top: 50%; left: calc(100% + 6px); transform: translateY(-50%); }
+    .pin.below span { bottom: auto; top: calc(100% + 6px); }
+    .pin.left-up span { bottom: auto; top: 50%; right: calc(100% + 6px); transform: translateY(-70%); }
+    .pin.left-down span { bottom: auto; top: 50%; right: calc(100% + 6px); transform: translateY(-30%); }
+    .pin.right-up span { bottom: auto; top: 50%; left: calc(100% + 6px); transform: translateY(-80%); }
+    .pin.below-far span { bottom: auto; top: calc(100% + 6px); right: -32px; }
+    .pin.hl span { border-color: var(--brand); }
+    .pin:hover i, .pin.hl i { transform: scale(1.3); }
+    .pin.hq-pin i { width: 18px; height: 18px; background: var(--gold-d); }
+    .pin.hq-pin span { left: -8px; background: var(--brand-d); color: #fff; border-color: var(--brand-d); }   /* starts at the pin so it never runs off the left edge */
+    .chips span[data-city] { cursor: default; transition: border-color .2s, background-color .2s; }
+    .chips span[data-city]:hover { border-color: var(--brand); background: var(--brand-l); }
+    /* ───────── Footer: full-width deep charcoal-green band with sand accents ───────── */
+    .footer { margin-top: clamp(20px, 2.4vw, 32px); background: #1C2420; color: #EAE6DC; }
+    .foot-box { padding: clamp(36px, 4vw, 56px) 0 20px; }
+    .f-grid { display: grid; grid-template-columns: 1.4fr 1.15fr .95fr 1.3fr; gap: 32px; }
+    .f-logo { height: 38px; width: auto; filter: brightness(0) invert(1); }
+    .f-brand p { margin: 14px 0 0; max-width: 38ch; font-size: 14.5px; line-height: 1.55; color: rgba(234,230,220,.78); }
+    .f-grid h4 { margin: 4px 0 12px; font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+    .f-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14.5px; }
+    .f-grid ul li, .f-grid ul a { color: #EAE6DC; }
+    .f-grid ul a { transition: color .2s; }
+    .f-grid ul a:hover { color: #fff; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 4px; }
+    .f-contact { gap: 10px; }
+    .f-contact li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; align-items: start; overflow-wrap: anywhere; }
+    .f-contact svg { width: 18px; height: 18px; margin-top: 2px; color: var(--gold); }
+    .socials { display: flex; gap: 8px; margin-top: 16px; }
+    .socials a { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(205,167,112,.5); color: #EAE6DC; display: grid; place-items: center; transition: background-color .2s, border-color .2s; }
+    .socials a:hover { background: rgba(205,167,112,.14); border-color: var(--gold); }
+    .socials svg { width: 17px; height: 17px; }
+    .f-bottom { margin-top: clamp(24px, 3vw, 36px); padding-top: 16px; border-top: 1px solid rgba(234,230,220,.12); text-align: center; font-size: 13.5px; font-weight: 700; color: #fff; }
+
+    /* ───────── Subtle reveal (only when JS runs) ───────── */
+    .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 1260px) {
+      .nav { display: none; }
+      .burger { display: grid; }
+      .header .wrap { grid-template-columns: auto 1fr; }
+      .head-actions { grid-column: 2; }
+    }
+    /* ───────── Responsive ───────── */    @media (max-width: 1080px) {
+      .svc-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1000px) {
+      .types { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 820px) {
+      .team { grid-template-columns: 1fr; }
+      .team-media { min-height: 0; aspect-ratio: 16 / 11; }
+      .slider { min-height: 500px; }
+      .slide::after { background: linear-gradient(180deg, rgba(22,30,25,.66) 0%, rgba(22,30,25,.4) 38%, rgba(22,30,25,.06) 68%, rgba(22,30,25,0) 82%); }
+      .slide .wrap { padding-top: 40px; }
+      .steps { grid-template-columns: 1fr; }
+      .areas { grid-template-columns: 1fr; }
+      .map-wrap { justify-self: center; }
+      .f-grid { grid-template-columns: 1fr 1fr; }
+      .f-grid > :first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 600px) {
+      .header .wrap { height: 68px; gap: 12px; }
+      .slider { height: calc(100vh - 68px); height: calc(100svh - 68px); }
+      .logo img { height: 32px; }
+      .head-actions .btn-forest { height: 42px; padding: 0 14px; font-size: 14px; }
+      .track { width: 42px; height: 42px; padding: 0; }
+      .track span { display: none; }
+      .arrows { display: none; }
+      .book { margin-top: -72px; }
+      .slider-ui { bottom: 90px; }
+      .book-card { padding: 16px; }
+      .types { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .types button { min-height: 52px; gap: 8px; padding: 8px 28px 8px 10px; font-size: 13px; }
+      .types button > svg { width: 20px; height: 20px; }
+      .types .tick { right: 8px; }
+      .book-row { gap: 10px 12px; }
+      .book-row [data-room] { width: auto; flex: 1 1 0; min-width: 0; }
+      .book-row .btn { width: 100%; margin-left: 0; }
+      .svc-grid, .benefits { grid-template-columns: 1fr; }
+      .pin span { font-size: 10px; padding: 2px 6px; }
+      .pin[data-city="royal-oak"] span { left: auto; top: calc(100% + 5px); transform: none; }   /* below on phones, clear of Sterling Heights */
+      .pin.below-far span { right: -30px; }
+      .pin i { width: 11px; height: 11px; border-width: 2px; }
+      .benefits { gap: 10px; }
+      .benefit { padding: 16px; grid-template-columns: auto 1fr; column-gap: 14px; row-gap: 2px; }
+      .benefit .ic { grid-row: span 2; margin: 0; width: 42px; height: 42px; }
+      .f-grid { grid-template-columns: 1fr 1fr; gap: 22px 16px; }
+      .f-grid > :last-child { grid-column: 1 / -1; }
+      .f-grid ul { font-size: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .001ms !important; transition-delay: 0s !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ───────── Contact page ───────── */
+    .page-hero { position: relative; isolation: isolate; overflow: hidden; color: #FBF8F2; padding: clamp(56px, 7vw, 100px) 0 clamp(52px, 6.4vw, 92px); }
+    /* photo shown whole on the right, blurred copy behind it, soft shade under the heading */
+    .page-hero-bg { position: absolute; inset: -60px; z-index: -3; background-position: center; background-size: cover; filter: blur(34px) brightness(.8); }
+    .page-hero-img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: contain; object-position: 100% 50%; }
+    .page-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(22,30,25,.9) 0%, rgba(22,30,25,.72) 38%, rgba(22,30,25,.2) 68%, rgba(22,30,25,.08) 100%); }
+    .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: rgba(251,248,242,.72); }
+    .crumbs a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+    .page-hero h1 { margin-top: 0; font-family: var(--sans); font-weight: 700; font-size: clamp(36px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -0.03em; color: #FBF8F2; }
+    .page-hero h1 em { font-family: var(--serif); font-weight: 400; color: var(--gold); }
+    .page-hero p { margin: 12px 0 0; max-width: 54ch; font-size: clamp(16px, 1.4vw, 18px); color: rgba(251,248,242,.86); }
+
+    .contact { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(24px, 4vw, 56px); align-items: start; }
+    .contact-info h2 { margin-top: 10px; }
+    .contact-info > p { margin: 10px 0 0; color: var(--ink-2); }
+    .c-cards { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; }
+    .c-cards a { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r); transition: border-color .2s, box-shadow .2s; }
+    .c-cards a:hover { border-color: var(--brand); box-shadow: var(--shadow); }
+    .c-cards .ic { flex: none; width: 44px; height: 44px; margin: 0; border-radius: 12px; background: var(--brand-l); color: var(--brand-d); }
+    .c-cards .ic svg { width: 20px; height: 20px; }
+    .c-cards small { display: block; font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+    .c-cards b { display: block; font-size: 16px; font-weight: 600; color: var(--ink); overflow-wrap: anywhere; }
+    .c-cards em { display: block; font-style: normal; font-size: 14px; color: var(--ink-2); }
+    .c-quick { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .c-quick .btn { height: 46px; }
+
+    .c-form { display: grid; gap: 14px; padding: clamp(18px, 2.6vw, 28px); background: var(--bg); border: 1px solid var(--line); border-radius: var(--r); }
+    .c-form h3 { font-family: var(--sans); font-size: 18px; font-weight: 700; letter-spacing: 0; }
+    .c-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: grid; gap: 6px; min-width: 0; }
+    .field > span { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+    .field .count { font-style: normal; font-weight: 500; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+    .field input, .field textarea { width: 100%; padding: 12px 14px; font: inherit; font-size: 15px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; transition: border-color .2s, box-shadow .2s; }
+    .field textarea { min-height: 136px; resize: vertical; line-height: 1.5; }
+    .field input::placeholder, .field textarea::placeholder { color: var(--ink-3); }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(85,99,78,.16); }
+    .field.invalid input, .field.invalid textarea { border-color: #B5543F; }
+    .c-error { margin: 0; font-size: 13.5px; font-weight: 500; color: #A3402F; }
+    .c-submit { justify-self: start; height: 48px; font-weight: 700; }
+    .c-note { margin: -4px 0 0; font-size: 12.5px; color: var(--ink-3); }
+    .c-success { display: grid; gap: 4px; padding: 14px 16px; border-radius: 12px; background: var(--brand-l); color: var(--brand-d); font-size: 14.5px; }
+    @media (max-width: 820px) { .contact { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .page-hero::before { background: rgba(22,30,25,.66); } .page-hero-img { object-position: 50% 50%; } .c-row { grid-template-columns: 1fr; } .c-submit, .c-quick .btn { width: 100%; } }
+
+    /* ───────── Booking page: two steps + live summary ───────── */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    .bk-head { padding: clamp(28px, 4vw, 48px) 0 0; }
+    .bk-head-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 32px; }
+    .bk-head h1 { margin-top: 8px; font-size: clamp(32px, 4vw, 48px); line-height: 1.05; }
+    .bk-steps { list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; }
+    .bk-steps li { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 16px 0 6px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 14.5px; font-weight: 600; color: var(--ink-3); }
+    .bk-steps li span { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--bg); color: var(--ink-3); font-weight: 700; }
+    .bk-steps li.is-current { border-color: var(--forest); color: var(--ink); }
+    .bk-steps li.is-current span { background: var(--forest); color: #fff; }
+    .bk-steps li.is-done span { background: var(--brand-l); color: var(--brand-d); }
+
+    .bk-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 24px; align-items: start; }
+    .bk-form { display: grid; }
+    .bk-step { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 22px; }
+    .bk-group { display: grid; gap: 10px; }
+    .bk-label { margin: 0; font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+    .bk-label em { font-style: normal; font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--ink-3); }
+
+    .bk-types { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .bk-types label, .bk-pills label { position: relative; cursor: pointer; }
+    .bk-types input, .bk-pills input { position: absolute; opacity: 0; pointer-events: none; }
+    .bk-types span { display: grid; gap: 2px; height: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); transition: border-color .2s, background-color .2s; }
+    .bk-types b { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+    .bk-types small { font-size: 12.5px; color: var(--ink-3); }
+    .bk-types label:hover span { border-color: var(--brand); }
+    .bk-types input:checked + span { background: var(--brand-l); border-color: var(--brand); }
+    .bk-types input:checked + span b { color: var(--brand-d); }
+    .bk-types input:focus-visible + span, .bk-pills input:focus-visible + span { outline: 2px solid var(--gold-d); outline-offset: 2px; }
+
+    .bk-rooms { grid-template-columns: repeat(2, minmax(0, 200px)); gap: 16px; transition: opacity .2s; }
+    .bk-rooms .stepper { margin-top: 8px; }
+    .bk-rooms.is-off { opacity: .45; }
+    .bk-custom { margin: -8px 0 0; padding: 12px 14px; border-radius: 10px; background: var(--gold-l); color: #6B4E22; font-size: 14px; }
+
+    .bk-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .bk-pills span { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 14.5px; font-weight: 500; color: var(--ink-2); transition: all .2s; }
+    .bk-pills label:hover span { border-color: var(--brand); }
+    .bk-pills input:checked + span { background: var(--forest); border-color: var(--forest); color: #fff; }
+
+    .bk-when { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    .field select { width: 100%; height: 46px; padding: 0 12px; font: inherit; font-size: 15px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+    .field select:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(85,99,78,.16); }
+    .field.invalid select { border-color: #B5543F; }
+    .field input[type="date"] { height: 46px; }
+    .bk-time { display: grid; grid-template-columns: 1fr auto 1fr 1fr; align-items: center; gap: 6px; }
+    .bk-time select { width: 100%; height: 46px; padding: 0 10px; font: inherit; font-size: 15px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+    .bk-time > span { font-weight: 700; color: var(--ink-3); }
+
+    .bk-addons { padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+    .bk-addons summary { display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer; list-style: none; }
+    .bk-addons summary::-webkit-details-marker { display: none; }
+    .bk-addons summary::after { content: ""; width: 9px; height: 9px; border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3); transform: rotate(45deg); margin-left: 6px; transition: transform .2s; }
+    .bk-addons[open] summary::after { transform: rotate(-135deg); }
+    .bk-addon-count { margin-left: auto; font-size: 13px; color: var(--ink-3); }
+    .bk-all { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 14px; font-weight: 600; color: var(--ink-2); cursor: pointer; }
+    .bk-addon-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+    .bk-addon { display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-size: 14px; color: var(--ink-2); cursor: pointer; transition: border-color .2s, background-color .2s; }
+    .bk-addon:hover { border-color: var(--brand); }
+    .bk-addon .nm { flex: 1; line-height: 1.3; }
+    .bk-addon .pr { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+    .bk-addon:has(input:checked) { background: var(--brand-l); border-color: var(--brand); color: var(--brand-d); }
+    .bk-addons input[type="checkbox"], .bk-all input { width: 18px; height: 18px; accent-color: var(--forest); flex: none; }
+
+    .bk-actions { display: flex; justify-content: space-between; gap: 12px; padding-top: 6px; border-top: 1px solid var(--line); padding-top: 18px; }
+    .bk-actions .btn { height: 48px; font-weight: 700; }
+
+    .bk-done { justify-items: start; gap: 14px; padding: 8px 0; }
+    .bk-done .ic { width: 52px; height: 52px; margin: 0; border-radius: 50%; background: var(--forest); color: #fff; }
+    .bk-done .ic svg { width: 24px; height: 24px; }
+    .bk-done h2 { font-size: clamp(26px, 3vw, 34px); }
+    .bk-done p { margin: 0; color: var(--ink-2); max-width: 56ch; }
+    .bk-done-alt a { color: var(--brand-d); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+    .bk-summary { position: sticky; top: 100px; display: grid; gap: 16px; padding: 24px; border-radius: 20px; background: var(--forest); color: #EAF0EA; }
+    .bk-summary h2 { font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+    .bk-summary dl { margin: 0; display: grid; }
+    .bk-summary dl div { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1); font-size: 14.5px; }
+    .bk-summary dt { color: rgba(234,240,234,.7); }
+    .bk-summary dd { margin: 0; font-weight: 600; text-align: right; color: #fff; }
+    .bk-total { display: grid; gap: 8px; padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,.07); }
+    .bk-total div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 14px; color: rgba(234,240,234,.8); }
+    .bk-total div:first-child b { font-family: var(--serif); font-size: 40px; font-weight: 400; line-height: 1; color: #fff; }
+    .bk-total b { font-size: 20px; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; }
+    .bk-total small { display: block; font-size: 11.5px; color: var(--gold); }
+    .bk-help { margin: 0; font-size: 13.5px; color: rgba(234,240,234,.7); }
+    .bk-help a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+    @media (max-width: 1000px) {
+      .bk-grid { grid-template-columns: 1fr; }
+      .bk-summary { position: static; }
+      .bk-types { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .bk-steps li { height: 38px; font-size: 13px; padding-right: 12px; }
+      .bk-steps li span { width: 26px; height: 26px; }
+      .bk-when, .bk-addon-grid { grid-template-columns: 1fr; }
+      .bk-rooms { grid-template-columns: 1fr 1fr; }
+      .bk-actions .btn { flex: 1; }
+    }
+  </style>
+</head>
+<body class="no-js">
+  <script>document.body.classList.replace('no-js', 'js'); if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.body.classList.add('reduce');</script>
+
+  <!-- ═════════ Header ═════════ -->
+  <header class="header">
+    <div class="wrap">
+      <a href="index.html" class="logo" aria-label="Bambi Cleaning home"><img src="assets/logo-horizontal.svg" alt="Bambi Cleaning" width="143" height="38" /></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+        <a href="index.html#services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="15" y="5" width="4" height="4"/><path d="m19 9 2 2v10a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V11l2-2"/><path d="m13 14 8-2"/><path d="m13 19 8-2"/><path d="M3 3h.01M7 5h.01M11 7h.01M3 7h.01M7 9h.01M3 11h.01"/></svg>Services</a>
+        <a href="index.html#how"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="m9 13 2 2 4-4"/></svg>How it works</a>
+        <a href="index.html#areas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Areas</a>
+        <a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Contact</a>
+      </nav>
+      <div class="head-actions">
+        <a class="btn btn-ink btn-head track" href="https://www.bambicleaning.com/manage-booking/" aria-label="Track booking"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M16 3v4M8 3v4M3 11h18M9 16l2 2 4-4"/></svg><span>Track booking</span></a>
+        <a class="btn btn-forest btn-head" href="book.html">Book Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="scrim" data-close></div>
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="top">
+        <img src="assets/logo-horizontal.svg" alt="Bambi Cleaning" style="height:32px;width:auto" />
+        <button class="burger" style="display:grid" aria-label="Close menu" data-close>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <nav aria-label="Mobile">
+        <a href="index.html" data-close>Home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a href="index.html#services" data-close>Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a href="index.html#how" data-close>How it works <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a href="index.html#areas" data-close>Areas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a href="contact.html">Contact <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
+      </nav>
+      <div class="foot">
+        <a class="btn btn-gold" href="book.html">Book a clean</a>
+        <a class="btn btn-line" href="book.html">Get a quote</a>
+        <a class="btn btn-line" href="https://www.bambicleaning.com/manage-booking/">Track my booking</a>
+        <div class="contact"><a href="tel:+17343606176">(734) 360-6176</a><a href="mailto:admin@bambicleaning.com">admin@bambicleaning.com</a></div>
+      </div>
+    </div>
+  </div>
+
+  <main id="top" class="book-page">
+    <!-- ═════════ Page heading + steps ═════════ -->
+    <section class="bk-head" aria-labelledby="book-title">
+      <div class="wrap">
+        <div class="bk-head-row">
+          <div>
+            <span class="kicker">Book a clean</span>
+            <h1 id="book-title">Book your <em>clean</em></h1>
+          </div>
+          <ol class="bk-steps" aria-label="Booking steps">
+            <li class="is-current" data-step-dot="1"><span>1</span>Your clean</li>
+            <li data-step-dot="2"><span>2</span>Your details</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="block block-last" aria-label="Booking form and price summary">
+      <div class="wrap bk-grid">
+        <form class="box bk-form" id="book-form" novalidate>
+
+          <!-- ───── Step 1: the clean ───── -->
+          <fieldset class="bk-step" data-step="1">
+            <legend class="sr-only">Step 1 of 2: your clean</legend>
+
+            <div class="bk-group">
+              <h2 class="bk-label">Type of clean</h2>
+              <div class="bk-types" role="radiogroup" aria-label="Type of clean">
+                <label><input type="radio" name="type" value="residential" checked /><span><b>Residential</b><small>Homes and apartments</small></span></label>
+                <label><input type="radio" name="type" value="short-term-rental" /><span><b>Short-Term Rental</b><small>Turnovers between guests</small></span></label>
+                <label><input type="radio" name="type" value="commercial" /><span><b>Commercial</b><small>Offices and shared spaces</small></span></label>
+                <label><input type="radio" name="type" value="post-construction-renovation" /><span><b>Post-Construction</b><small>After a build or renovation</small></span></label>
+              </div>
+            </div>
+
+            <div class="bk-group bk-rooms" data-rooms>
+              <div>
+                <span class="bk-label" id="l-bk-beds">Bedrooms</span>
+                <div class="stepper" role="group" aria-labelledby="l-bk-beds">
+                  <button type="button" data-step-for="beds" data-step="-1" aria-label="Fewer bedrooms">−</button>
+                  <output id="bk-beds">3</output>
+                  <button type="button" data-step-for="beds" data-step="1" aria-label="More bedrooms">+</button>
+                </div>
+              </div>
+              <div>
+                <span class="bk-label" id="l-bk-baths">Bathrooms</span>
+                <div class="stepper" role="group" aria-labelledby="l-bk-baths">
+                  <button type="button" data-step-for="baths" data-step="-1" aria-label="Fewer bathrooms">−</button>
+                  <output id="bk-baths">2</output>
+                  <button type="button" data-step-for="baths" data-step="1" aria-label="More bathrooms">+</button>
+                </div>
+              </div>
+            </div>
+            <p class="bk-custom" id="bk-custom" hidden>Commercial and post-construction cleans are priced to your space. Send your details and we'll follow up with a custom quote.</p>
+
+            <div class="bk-group">
+              <h2 class="bk-label">How often?</h2>
+              <div class="bk-pills" role="radiogroup" aria-label="Frequency">
+                <label><input type="radio" name="frequency" value="One-Time" checked /><span>One-time</span></label>
+                <label><input type="radio" name="frequency" value="Weekly" /><span>Weekly</span></label>
+                <label><input type="radio" name="frequency" value="Bi-Weekly" /><span>Bi-weekly</span></label>
+                <label><input type="radio" name="frequency" value="Monthly" /><span>Monthly</span></label>
+              </div>
+            </div>
+
+            <div class="bk-group bk-when">
+              <label class="field" for="bk-date"><span>Date</span><input id="bk-date" name="date" type="date" required /></label>
+              <div class="field">
+                <span id="l-bk-time">Preferred time</span>
+                <div class="bk-time" role="group" aria-labelledby="l-bk-time">
+                  <select id="bk-hour" name="hour" aria-label="Hour"></select>
+                  <span aria-hidden="true">:</span>
+                  <select id="bk-min" name="minute" aria-label="Minute"><option>00</option><option>15</option><option>30</option><option>45</option></select>
+                  <select id="bk-ampm" name="ampm" aria-label="AM or PM"><option>AM</option><option>PM</option></select>
+                </div>
+              </div>
+            </div>
+
+            <details class="bk-group bk-addons" open>
+              <summary><span class="bk-label">Add extras <em>(optional)</em></span><span class="bk-addon-count" id="bk-addon-count">13 available</span></summary>
+              <label class="bk-all"><input type="checkbox" id="bk-all" /> Select all add-ons</label>
+              <div class="bk-addon-grid" id="bk-addons"></div>
+            </details>
+
+            <p class="c-error" id="bk-err-1" role="alert" hidden></p>
+            <div class="bk-actions">
+              <a class="btn btn-line" href="index.html">Back</a>
+              <button class="btn btn-forest" type="button" id="bk-next">Next: your details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
+          </fieldset>
+
+          <!-- ───── Step 2: personal details ───── -->
+          <fieldset class="bk-step" data-step="2" hidden>
+            <legend class="sr-only">Step 2 of 2: your details</legend>
+            <div class="c-row">
+              <label class="field" for="bk-name"><span>Full name</span><input id="bk-name" name="name" type="text" placeholder="Your full name" autocomplete="name" required /></label>
+              <label class="field" for="bk-email"><span>Email</span><input id="bk-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required /></label>
+            </div>
+            <label class="field" for="bk-address"><span>Address</span><input id="bk-address" name="address" type="text" placeholder="Street address" autocomplete="street-address" required /></label>
+            <div class="c-row">
+              <label class="field" for="bk-apt"><span>Apartment, suite, etc. <em class="count">Optional</em></span><input id="bk-apt" name="apartment" type="text" placeholder="Apt or suite" autocomplete="address-line2" /></label>
+              <label class="field" for="bk-zip"><span>Zip code</span><input id="bk-zip" name="zip" type="text" inputmode="numeric" placeholder="48104" autocomplete="postal-code" required /></label>
+            </div>
+            <div class="c-row">
+              <label class="field" for="bk-entry"><span>Entry method</span>
+                <select id="bk-entry" name="entry" required>
+                  <option value="" disabled selected>Select an entry method</option>
+                  <option>Key under mat</option><option>Door code</option><option>Someone is home</option><option>Lockbox</option><option>Front desk</option><option>Others</option>
+                </select>
+              </label>
+              <label class="field" for="bk-pets"><span>Pets</span>
+                <select id="bk-pets" name="pets" required>
+                  <option value="" disabled selected>Select a pet option</option>
+                  <option>Dog</option><option>Cat</option><option>No pets</option><option>Other</option>
+                </select>
+              </label>
+            </div>
+            <label class="field" for="bk-notes"><span>Special instructions <em class="count" id="bk-notes-count">0/500</em></span><textarea id="bk-notes" name="notes" rows="4" maxlength="500" placeholder="Anything we should know: parking, alarm, focus areas…"></textarea></label>
+
+            <p class="c-error" id="bk-err-2" role="alert" hidden></p>
+            <div class="bk-actions">
+              <button class="btn btn-line" type="button" id="bk-back">Back</button>
+              <button class="btn btn-forest" type="submit">Continue to payment <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
+          </fieldset>
+
+          <!-- ───── Done ───── -->
+          <div class="bk-step bk-done" data-step="3" hidden role="status">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <h2>Your booking request is <em>ready</em></h2>
+            <p>Your email app has opened with every detail filled in. Press send, and the Bambi team will confirm your clean and how to pay the <b id="bk-done-deposit">$30</b> deposit.</p>
+            <p class="bk-done-alt">Email didn't open? Write to <a href="mailto:admin@bambicleaning.com">admin@bambicleaning.com</a> or call <a href="tel:+17343606176">(734) 360-6176</a>.</p>
+            <a class="btn btn-line" href="index.html">Back to home</a>
+          </div>
+        </form>
+
+        <!-- ───── Live price summary ───── -->
+        <aside class="bk-summary" aria-label="Price summary" aria-live="polite">
+          <h2>Your clean</h2>
+          <dl>
+            <div><dt>Clean type</dt><dd id="s-type">Residential</dd></div>
+            <div><dt>Bedrooms</dt><dd id="s-beds">3</dd></div>
+            <div><dt>Bathrooms</dt><dd id="s-baths">2</dd></div>
+            <div><dt>Add-ons</dt><dd id="s-addons">None</dd></div>
+            <div><dt>Frequency</dt><dd id="s-freq">One-time</dd></div>
+            <div><dt>Date</dt><dd id="s-date">Not set</dd></div>
+          </dl>
+          <div class="bk-total">
+            <div><span>Total</span><b id="s-total">$150</b></div>
+            <div><span>Pay now <small>20% deposit</small></span><b id="s-pay">$30</b></div>
+            <div><span>Balance after clean</span><b id="s-bal">$120</b></div>
+          </div>
+          <p class="bk-help">Questions? Call <a href="tel:+17343606176">(734) 360-6176</a></p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═════════ Footer ═════════ -->
+  <footer class="footer">
+    <div class="wrap"><div class="foot-box">
+      <div class="f-grid">
+        <div class="f-brand">
+          <img class="f-logo" src="assets/logo-horizontal.svg" alt="Bambi Cleaning" width="173" height="46" />
+          <p>Bambi Cleaning provides professional cleaning for homes, rental properties, and workplaces across Southeast Michigan. We offer flexible services tailored to your space and schedule.</p>
+          <div class="socials">
+            <a href="https://www.instagram.com/bambicleaning/" aria-label="Bambi Cleaning on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4>Our Services</h4>
+          <ul>
+            <li>Standard Cleaning</li>
+            <li>Residential Cleaning</li>
+            <li>Rental Cleaning</li>
+            <li>Move-In / Move-Out Cleaning</li>
+            <li>Office Cleaning</li>
+            <li>Post-Construction Cleaning</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#how">How It Works</a></li>
+            <li><a href="index.html#areas">Service Areas</a></li>
+            <li><a href="https://www.bambicleaning.com/manage-booking/">Track Booking</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get in Touch</h4>
+          <ul class="f-contact">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+17343606176">(734) 360-6176</a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:admin@bambicleaning.com">admin@bambicleaning.com</a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><a href="https://www.google.com/maps/place/2500+Packard+Rd+Ste+201C,+Ann+Arbor,+MI+48104,+USA/data=!4m2!3m1!1s0x883cafa638c3d5ab:0x5264ac7f326285e7" target="_blank" rel="noopener">2500 Packard Rd, Suite 201C<br />Ann Arbor, MI 48104</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="f-bottom">© <span id="year">2026</span> Bambi Cleaning. All rights reserved.</div>
+    </div></div>
+  </footer>
+
+  <script>
+  (() => {
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+    $('#year').textContent = new Date().getFullYear();
+
+    /* Header: border on scroll */
+    const header = $('.header');
+    const onScroll = () => header.classList.toggle('scrolled', scrollY > 40);
+    onScroll();
+    addEventListener('scroll', onScroll, { passive: true });
+
+    /* Mobile drawer */
+    const drawer = $('#drawer');
+    const openBtn = $('.header .burger');
+    const setMenu = (open) => {
+      drawer.classList.toggle('open', open);
+      drawer.setAttribute('aria-hidden', String(!open));
+      openBtn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+      if (open) $('.panel [data-close]', drawer).focus(); else openBtn.focus();
+    };
+    openBtn.addEventListener('click', () => setMenu(true));
+    $$('[data-close]', drawer).forEach((el) => el.addEventListener('click', () => setMenu(false)));
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && drawer.classList.contains('open')) setMenu(false); });
+
+    /* Pricing: same rules as the Bambi quote calculator */
+    const PRICING = {
+      'residential': { label: 'Residential', baseBeds: 3, baseBaths: 2, base: 150 },
+      'short-term-rental': { label: 'Short-Term Rental', baseBeds: 2, baseBaths: 2, base: 150 },
+      'commercial': { label: 'Commercial', custom: true },
+      'post-construction-renovation': { label: 'Post-Construction', custom: true },
+    };
+    const EXTRA_ROOM = 25;
+    const ADDONS = [
+      ['Inside Fridge Cleaning', 25], ['Inside Oven Cleaning', 25], ['Inside kitchen cabinets and drawers', 25],
+      ['Baseboard Dusting', 50], ['Window Interior Cleaning', 50], ['Garage Organization & Sweep', 50],
+      ['Indoor Trash Can Cleaning (all cans)', 30], ['Outdoor Trash Can Cleaning (all cans)', 50], ['Patio / Balcony Refresh', 25],
+      ['Light Fixtures & Ceiling Fans Dusting', 25], ['Linen Closet Organize', 15], ['Pantry Organize', 20], ['Welcome Basket Prep', 30],
+    ];
+    const money = (n) => `$${Math.round(n).toLocaleString('en-US')}`;
+
+    const form = $('#book-form');
+    const state = { beds: 3, baths: 2 };
+    const addonBox = $('#bk-addons');
+    addonBox.innerHTML = ADDONS.map(([name, price], i) =>
+      `<label class="bk-addon"><input type="checkbox" name="addon" value="${i}" /><span class="nm">${name}</span><span class="pr">$${price}</span></label>`).join('');
+
+    // Time options 1–12, default 10:00 AM
+    $('#bk-hour').innerHTML = Array.from({ length: 12 }, (_, i) => `<option${i + 1 === 10 ? ' selected' : ''}>${i + 1}</option>`).join('');
+    const dateInput = $('#bk-date');
+    const today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+    dateInput.min = today.toISOString().slice(0, 10);
+
+    // Prefill from the homepage card (?type=&beds=&baths=)
+    const q = new URLSearchParams(location.search);
+    const typeMap = { 'residential': 'residential', 'move-in-out': 'residential', 'short-term-rental': 'short-term-rental', 'commercial': 'commercial', 'post-construction': 'post-construction-renovation', 'post-construction-renovation': 'post-construction-renovation' };
+    const qType = typeMap[q.get('type')];
+    if (qType) $(`input[name="type"][value="${qType}"]`).checked = true;
+    const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+    if (q.get('beds')) state.beds = clamp(parseInt(q.get('beds'), 10) || 3, 1, 10);
+    if (q.get('baths')) state.baths = clamp(parseInt(q.get('baths'), 10) || 2, 1, 8);
+
+    const selectedAddons = () => $$('input[name="addon"]:checked', form).map((c) => ADDONS[+c.value]);
+    const quote = () => {
+      const type = $('input[name="type"]:checked', form).value;
+      const p = PRICING[type];
+      const addons = selectedAddons();
+      const addonTotal = addons.reduce((s, [, price]) => s + price, 0);
+      if (p.custom) return { type, p, addons, total: null };
+      const total = p.base + Math.max(0, state.beds - p.baseBeds) * EXTRA_ROOM + Math.max(0, state.baths - p.baseBaths) * EXTRA_ROOM + addonTotal;
+      return { type, p, addons, total };
+    };
+    const fmtDate = () => {
+      if (!dateInput.value) return 'Not set';
+      const d = new Date(`${dateInput.value}T12:00:00`);
+      return `${d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}, ${$('#bk-hour').value}:${$('#bk-min').value} ${$('#bk-ampm').value}`;
+    };
+    const render = () => {
+      const { p, addons, total } = quote();
+      $('#bk-beds').textContent = state.beds;
+      $('#bk-baths').textContent = state.baths;
+      $('[data-rooms]').classList.toggle('is-off', !!p.custom);
+      $$('[data-rooms] button').forEach((b) => (b.disabled = !!p.custom));
+      $('#bk-custom').hidden = !p.custom;
+      $('#s-type').textContent = p.label;
+      $('#s-beds').textContent = p.custom ? '—' : state.beds;
+      $('#s-baths').textContent = p.custom ? '—' : state.baths;
+      $('#s-addons').textContent = addons.length ? `${addons.length} selected` : 'None';
+      $('#s-freq').textContent = $('input[name="frequency"]:checked', form).nextElementSibling.textContent;
+      $('#s-date').textContent = fmtDate();
+      $('#s-total').textContent = total === null ? 'Custom quote' : money(total);
+      $('#s-pay').textContent = total === null ? '—' : money(total * 0.2);
+      $('#s-bal').textContent = total === null ? '—' : money(total * 0.8);
+      const n = addons.length;
+      $('#bk-addon-count').textContent = n ? `${n} selected · +${money(addons.reduce((s, [, pr]) => s + pr, 0))}` : `${ADDONS.length} available`;
+      $('#bk-all').checked = n === ADDONS.length;
+      $('#bk-all').indeterminate = n > 0 && n < ADDONS.length;
+    };
+    $$('[data-step-for]', form).forEach((b) => b.addEventListener('click', () => {
+      const k = b.dataset.stepFor;
+      state[k] = clamp(state[k] + +b.dataset.step, 1, k === 'beds' ? 10 : 8);
+      render();
+    }));
+    $('#bk-all').addEventListener('change', (e) => { $$('input[name="addon"]', form).forEach((c) => (c.checked = e.target.checked)); render(); });
+    form.addEventListener('change', render);
+    render();
+    // On phones, keep the long add-on list folded until the visitor opens it
+    if (matchMedia('(max-width: 600px)').matches) $('.bk-addons').open = false;
+
+    /* Steps */
+    const dots = $$('[data-step-dot]');
+    const show = (n) => {
+      $$('.bk-step', form).forEach((s) => (s.hidden = +s.dataset.step !== n));
+      dots.forEach((d) => { const k = +d.dataset.stepDot; d.classList.toggle('is-current', k === n); d.classList.toggle('is-done', k < n); });
+      $('.bk-head').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const fail = (errEl, list) => {
+      list.forEach(([el]) => el.closest('.field').classList.add('invalid'));
+      errEl.textContent = list.map(([, t]) => t).join(' ');
+      errEl.hidden = false;
+      list[0][0].focus();
+    };
+    $$('input, select, textarea', form).forEach((el) => el.addEventListener('input', () => {
+      const f = el.closest('.field'); if (f) f.classList.remove('invalid');
+      $('#bk-err-1').hidden = true; $('#bk-err-2').hidden = true;
+    }));
+    $('#bk-next').addEventListener('click', () => {
+      if (!dateInput.value || dateInput.value < dateInput.min) return fail($('#bk-err-1'), [[dateInput, 'Choose a date for your clean.']]);
+      show(2);
+    });
+    $('#bk-back').addEventListener('click', () => show(1));
+    const notes = $('#bk-notes');
+    notes.addEventListener('input', () => { $('#bk-notes-count').textContent = `${notes.value.length}/500`; });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = (id) => $(id).value.trim();
+      const problems = [];
+      if (!v('#bk-name')) problems.push([$('#bk-name'), 'Enter your full name.']);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('#bk-email'))) problems.push([$('#bk-email'), 'Enter a valid email address.']);
+      if (!v('#bk-address')) problems.push([$('#bk-address'), 'Enter the address.']);
+      if (!/^\d{5}(-\d{4})?$/.test(v('#bk-zip'))) problems.push([$('#bk-zip'), 'Enter a 5-digit zip code.']);
+      if (!$('#bk-entry').value) problems.push([$('#bk-entry'), 'Choose an entry method.']);
+      if (!$('#bk-pets').value) problems.push([$('#bk-pets'), 'Choose a pet option.']);
+      if (problems.length) return fail($('#bk-err-2'), problems);
+
+      const { p, addons, total } = quote();
+      const lines = [
+        'New booking request', '',
+        `Clean type: ${p.label}`,
+        p.custom ? 'Size: custom quote needed' : `Bedrooms: ${state.beds}   Bathrooms: ${state.baths}`,
+        `Frequency: ${$('#s-freq').textContent}`,
+        `Date and time: ${fmtDate()}`,
+        `Add-ons: ${addons.length ? addons.map(([n, pr]) => `${n} ($${pr})`).join(', ') : 'None'}`,
+        total === null ? 'Total: custom quote' : `Total: ${money(total)}   Deposit (20%): ${money(total * 0.2)}   Balance: ${money(total * 0.8)}`, '',
+        `Name: ${v('#bk-name')}`, `Email: ${v('#bk-email')}`,
+        `Address: ${v('#bk-address')}${v('#bk-apt') ? `, ${v('#bk-apt')}` : ''}, ${v('#bk-zip')}`,
+        `Entry method: ${$('#bk-entry').value}`, `Pets: ${$('#bk-pets').value}`,
+        `Special instructions: ${notes.value.trim() || 'None'}`,
+      ];
+      const subject = `Booking request: ${p.label}, ${fmtDate()}`;
+      location.href = `mailto:admin@bambicleaning.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+      $('#bk-done-deposit').textContent = total === null ? 'quote' : money(total * 0.2);
+      show(3);
+    });
+  })();
+  </script>
+</body>
+</html>
