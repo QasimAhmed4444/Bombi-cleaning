@@ -210,7 +210,14 @@
 
     /* ───────── Services ───────── */
     .services { padding-top: clamp(20px, 2.4vw, 32px); }
-    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .svc-nav { display: flex; align-items: center; gap: 8px; }
+    .svc-arrow { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); display: grid; place-items: center; cursor: pointer; transition: background-color .2s, border-color .2s; }
+    .svc-arrow:hover { border-color: var(--ink-3); background: var(--bg); }
+    .svc-arrow svg { width: 18px; height: 18px; }
+    /* sliding row: 3 cards visible, the track moves one card at a time */
+    .svc-viewport { overflow: hidden; margin: -6px -4px -12px; padding: 6px 4px 12px; }
+    .svc-grid { display: flex; gap: 18px; transition: transform .7s var(--ease); will-change: transform; }
+    .svc-grid > .svc { flex: 0 0 calc((100% - 36px) / 3); min-width: 0; }
     .svc { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; transition: box-shadow .25s, transform .25s var(--ease), border-color .25s; }
     .svc:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); border-color: transparent; }
     .svc .media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; max-width: 100%; }
@@ -294,7 +301,7 @@
       .head-actions { grid-column: 2; }
     }
     /* ───────── Responsive ───────── */    @media (max-width: 1080px) {
-      .svc-grid { grid-template-columns: repeat(2, 1fr); }
+      .svc-grid > .svc { flex-basis: calc((100% - 18px) / 2); }
     }
     @media (max-width: 1000px) {
       .types { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -330,7 +337,9 @@
       .book-row { gap: 10px 12px; }
       .book-row [data-room] { width: auto; flex: 1 1 0; min-width: 0; }
       .book-row .btn { width: 100%; margin-left: 0; }
-      .svc-grid, .benefits { grid-template-columns: 1fr; }
+      .benefits { grid-template-columns: 1fr; }
+      .svc-grid > .svc { flex-basis: 100%; }
+      .svc-nav .btn { display: none; }
       .pin span { font-size: 10px; padding: 2px 6px; }
       .pin[data-city="royal-oak"] span { left: auto; top: calc(100% + 5px); transform: none; }   /* below on phones, clear of Sterling Heights */
       .pin.below-far span { right: -30px; }
@@ -524,33 +533,39 @@
       <div class="wrap"><div class="box">
         <div class="sec-head reveal">
           <h2 id="svc-title">Our Cleaning <em>Services</em></h2>
-          <a class="btn btn-line" href="https://www.bambicleaning.com/services">View all services</a>
+          <div class="svc-nav">
+            <button type="button" class="svc-arrow svc-prev" aria-label="Previous services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+            <button type="button" class="svc-arrow svc-next" aria-label="Next services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+            <a class="btn btn-line" href="services.html">View all services</a>
+          </div>
         </div>
+        <div class="svc-viewport">
         <div class="svc-grid">
-          <a class="svc reveal" href="https://www.bambicleaning.com/services">
-            <div class="media"><img src="assets/residential-760.webp" srcset="assets/residential-760.webp 760w, assets/residential-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" loading="lazy" decoding="async" /><span class="price">From $150</span></div>
+          <a class="svc" href="services.html#residential-cleaning">
+            <div class="media"><img src="assets/residential-760.webp" srcset="assets/residential-760.webp 760w, assets/residential-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" decoding="async" /><span class="price">From $150</span></div>
             <div class="body"><h3>Residential cleaning</h3><p>Routine or deep cleaning for homes and apartments — kitchens, bathrooms, living spaces, bedrooms, and floors.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
-          <a class="svc reveal" href="https://www.bambicleaning.com/services">
-            <div class="media"><img src="assets/short-term-rental-760.webp" srcset="assets/short-term-rental-760.webp 760w, assets/short-term-rental-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" loading="lazy" decoding="async" /><span class="price">From $175</span></div>
+          <a class="svc" href="services.html#short-term-rental-cleaning">
+            <div class="media"><img src="assets/short-term-rental-760.webp" srcset="assets/short-term-rental-760.webp 760w, assets/short-term-rental-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" decoding="async" /><span class="price">From $175</span></div>
             <div class="body"><h3>Short-term rental cleaning</h3><p>Fast, detailed turnover service between guests — fresh linens, restocking essentials, kitchen and bathroom reset.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
-          <a class="svc reveal" href="https://www.bambicleaning.com/services">
-            <div class="media"><img src="assets/move-in-out-760.webp" srcset="assets/move-in-out-760.webp 760w, assets/move-in-out-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" loading="lazy" decoding="async" /><span class="price">Instant quote</span></div>
+          <a class="svc" href="services.html#move-in-move-out-cleaning">
+            <div class="media"><img src="assets/move-in-out-760.webp" srcset="assets/move-in-out-760.webp 760w, assets/move-in-out-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" decoding="async" /><span class="price">Instant quote</span></div>
             <div class="body"><h3>Move-in / move-out cleaning</h3><p>Deep cleaning of vacant homes or apartments — inside appliances, cabinets, baseboards and bathrooms for a spotless turnover.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
-          <a class="svc reveal" href="https://www.bambicleaning.com/services">
-            <div class="media"><img src="assets/office-760.webp" srcset="assets/office-760.webp 760w, assets/office-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" loading="lazy" decoding="async" /><span class="price">Custom quote</span></div>
+          <a class="svc" href="services.html#office-cleaning">
+            <div class="media"><img src="assets/office-760.webp" srcset="assets/office-760.webp 760w, assets/office-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" decoding="async" /><span class="price">Custom quote</span></div>
             <div class="body"><h3>Office cleaning</h3><p>Professional cleaning for workspaces — desks, common areas, restrooms, and breakrooms to keep teams productive.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
-          <a class="svc reveal" href="https://www.bambicleaning.com/services">
-            <div class="media"><img src="assets/shared-space-760.webp" srcset="assets/shared-space-760.webp 760w, assets/shared-space-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" loading="lazy" decoding="async" /><span class="price">Custom quote</span></div>
+          <a class="svc" href="services.html#shared-space-cleaning">
+            <div class="media"><img src="assets/shared-space-760.webp" srcset="assets/shared-space-760.webp 760w, assets/shared-space-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" decoding="async" /><span class="price">Custom quote</span></div>
             <div class="body"><h3>Shared space cleaning</h3><p>Cleaning for lobbies, hallways, waiting rooms and other communal areas — keeping high-traffic spaces tidy and welcoming.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
-          <a class="svc reveal" href="https://www.bambicleaning.com/services">
-            <div class="media"><img src="assets/after-construction-760.webp" srcset="assets/after-construction-760.webp 760w, assets/after-construction-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" loading="lazy" decoding="async" /><span class="price">Custom quote</span></div>
+          <a class="svc" href="services.html#after-construction-cleaning">
+            <div class="media"><img src="assets/after-construction-760.webp" srcset="assets/after-construction-760.webp 760w, assets/after-construction-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" decoding="async" /><span class="price">Custom quote</span></div>
             <div class="body"><h3>After-construction cleaning</h3><p>Detailed cleaning to remove dust, debris and residue after building or remodeling — making the space safe and move-in ready.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
+        </div>
         </div>
       </div></div>
     </section>
@@ -802,6 +817,53 @@
       const v = Math.min(max, Math.max(min, +out.textContent + +b.dataset.step));
       out.textContent = v; inp.value = v;
     }));
+
+    /* Services row: 3 cards in view, slides one card at a time and loops through all 6 */
+    const svcTrack = $('.svc-grid');
+    if (svcTrack) {
+      const originals = $$('.svc', svcTrack);
+      const total = originals.length;
+      originals.forEach((c) => {
+        const copy = c.cloneNode(true);   // copies after the real cards make the loop seamless
+        copy.setAttribute('aria-hidden', 'true');
+        copy.tabIndex = -1;
+        svcTrack.appendChild(copy);
+      });
+      let pos = 0, auto = null;
+      const stepPx = () => svcTrack.children[1].getBoundingClientRect().left - svcTrack.children[0].getBoundingClientRect().left;
+      const go = (p, animate = true) => {
+        svcTrack.style.transition = animate ? '' : 'none';
+        pos = p;
+        svcTrack.style.transform = `translateX(${-pos * stepPx()}px)`;
+      };
+      svcTrack.addEventListener('transitionend', (e) => {
+        if (e.target !== svcTrack) return;
+        if (pos >= total) go(pos - total, false);
+      });
+      const next = () => go(pos + 1);
+      const prev = () => {
+        if (pos === 0) { go(total, false); void svcTrack.offsetWidth; }
+        go(pos - 1);
+      };
+      const play = () => { if (reduce) return; clearInterval(auto); auto = setInterval(next, 3500); };
+      const stop = () => clearInterval(auto);
+      $('.svc-next').addEventListener('click', () => { next(); play(); });
+      $('.svc-prev').addEventListener('click', () => { prev(); play(); });
+      const vp = $('.svc-viewport');
+      vp.addEventListener('mouseenter', stop);
+      vp.addEventListener('mouseleave', play);
+      vp.addEventListener('focusin', stop);
+      vp.addEventListener('focusout', play);
+      let sx = null;
+      vp.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; stop(); }, { passive: true });
+      vp.addEventListener('touchend', (e) => {
+        if (sx !== null) { const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) (dx < 0 ? next : prev)(); }
+        sx = null; play();
+      });
+      addEventListener('resize', () => go(pos, false));
+      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : play()));
+      play();
+    }
 
     /* Areas: hovering a city chip highlights its pin on the map */
     $$('.chips [data-city]').forEach((chip) => {

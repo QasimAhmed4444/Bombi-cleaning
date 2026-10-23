@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cleaning Services | Bambi Cleaning</title>
+  <meta name="description" content="Residential, short-term rental, office, shared space, move-in/move-out and after-construction cleaning in Ann Arbor and Southeast Michigan." />
+  <meta name="theme-color" content="#F6F4EF" />
+  <link rel="icon" href="https://www.bambicleaning.com/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Layout: two-tier header → full-bleed hero slider with an overlapping price bar → calm, evenly spaced sections on an ivory ground */
+    :root {
+      --bg: #F6F4EF;          /* ivory ground */
+      --surface: #FFFFFF;
+      --ink: #18211C;         /* deep forest ink */
+      --ink-2: #4A544D;
+      --ink-3: #7A847D;
+      --brand: #55634E;       /* Bambi sage, deepened */
+      --brand-d: #26302A;
+      --brand-l: #E7EBE3;
+      --gold: #CDA770;        /* Bambi sand, the call-to-action colour */
+      --gold-d: #B48D55;
+      --gold-l: #F4EBDC;
+      --line: #E2DED5;
+      --ink-btn: #1D2125;
+      --forest: #1F3D2B;      /* primary header action */
+
+      --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+      --sans: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+      --r: 14px;
+      --r-sm: 10px;
+      --shadow: 0 1px 2px rgba(24,33,28,.04), 0 10px 30px -14px rgba(24,33,28,.18);
+      --shadow-lg: 0 2px 6px rgba(24,33,28,.05), 0 30px 60px -28px rgba(24,33,28,.32);
+      --ease: cubic-bezier(.22, .61, .36, 1);
+      --max: 1240px;
+      --gutter: clamp(16px, 4vw, 40px);
+      --section: clamp(56px, 6.5vw, 92px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: var(--sans); font-size: 16px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; color: inherit; }
+    :focus-visible { outline: 2px solid var(--gold-d); outline-offset: 3px; border-radius: 6px; }
+    ::selection { background: var(--gold-l); }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+    .section { padding-block: var(--section); }
+
+    /* Type */
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; letter-spacing: -0.015em; text-wrap: balance; }
+    h1 { font-size: clamp(40px, 5.6vw, 72px); line-height: 1.04; }
+    h2 { font-size: clamp(28px, 3.2vw, 42px); line-height: 1.08; }
+    h3 { font-size: 23px; line-height: 1.2; }
+    h1 em, h2 em { font-style: italic; color: var(--brand); }
+    .on-dark h1 em, .on-dark h2 em { color: var(--gold); }
+    .kicker { display: inline-block; font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-d); }
+    .lede { font-size: 18px; color: var(--ink-2); margin: 0; max-width: 54ch; }
+    .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px 40px; margin-bottom: clamp(36px, 4.5vw, 56px); }
+    .sec-head > div { display: grid; gap: 14px; max-width: 640px; }
+    .sec-head.center { justify-content: center; text-align: center; }
+    .sec-head.center > div { justify-items: center; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      height: 50px; padding: 0 24px; border-radius: var(--r-sm); border: 1px solid transparent;
+      font-weight: 600; font-size: 15px; letter-spacing: .005em; white-space: nowrap; cursor: pointer;
+      transition: background-color .2s, border-color .2s, color .2s, box-shadow .2s;
+    }
+    .btn svg { width: 17px; height: 17px; flex: none; }
+    .btn-gold { background: var(--gold); color: var(--ink); }
+    .btn-gold:hover { background: var(--gold-d); }
+    .btn-dark { background: var(--brand-d); color: #fff; }
+    .btn-dark:hover { background: var(--ink); }
+    .btn-line { border-color: var(--line); background: var(--surface); color: var(--ink); }
+    .btn-line:hover { border-color: var(--ink); }
+    .btn-glass { border-color: rgba(255,255,255,.45); color: #fff; background: rgba(255,255,255,.08); }
+    .btn-glass:hover { background: rgba(255,255,255,.18); }
+    .btn-sm { height: 42px; padding: 0 18px; font-size: 14px; }
+    .link-arrow { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14.5px; color: var(--brand-d); }
+    .link-arrow svg { width: 16px; height: 16px; transition: transform .2s var(--ease); }
+    .link-arrow:hover svg { transform: translateX(3px); }
+
+    /* ───────── Header ───────── */
+    .header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); border-bottom: 1px solid transparent; transition: border-color .2s, box-shadow .2s; }
+    .header.scrolled { border-bottom-color: var(--line); box-shadow: 0 6px 20px -16px rgba(24,33,28,.4); }
+    /* three columns: logo left, menu centred, actions right */
+    .header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; column-gap: 32px; height: 80px; }
+    .logo { grid-column: 1; justify-self: start; display: inline-flex; align-items: center; }
+    .logo img { height: 38px; width: auto; }
+    .nav { grid-column: 2; display: flex; align-items: center; justify-content: center; gap: 14px; }
+    .nav a { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 16px; border-radius: 10px; font-size: 14.5px; font-weight: 500; line-height: 1; color: var(--ink-2); white-space: nowrap; transition: background-color .2s, color .2s; }
+    .nav a svg { display: block; width: 18px; height: 18px; flex: none; color: var(--ink-3); transition: color .2s; }
+    .nav a:hover { background: var(--bg); color: var(--ink); }
+    .nav a:hover svg { color: var(--brand); }
+    /* current section: soft sage tint with darker matching text and icon, no size change */
+    .nav a.active { background: var(--brand-l); color: var(--brand-d); }
+    .nav a.active svg { color: var(--brand); }
+    .btn-head { height: 44px; padding: 0 18px; border-radius: 10px; font-size: 14.5px; font-weight: 700; }
+    .btn-ink { background: var(--ink-btn); color: #fff; }
+    .btn-ink:hover { background: #000; }
+    .btn-forest { background: var(--forest); color: #fff; }
+    .btn-forest:hover { background: #17301F; }
+    .head-actions { grid-column: 3; justify-self: end; display: flex; align-items: center; gap: 12px; }
+    .burger { display: none; width: 46px; height: 46px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface); cursor: pointer; place-items: center; }
+    .burger svg { width: 20px; height: 20px; }
+
+    .btn-head svg { width: 18px; height: 18px; }
+    .drawer { position: fixed; inset: 0; z-index: 60; display: flex; justify-content: flex-end; visibility: hidden; }
+    .drawer .scrim { position: absolute; inset: 0; background: rgba(24,33,28,.4); opacity: 0; transition: opacity .3s; }
+    .drawer .panel { position: relative; width: min(380px, 88vw); height: 100%; background: var(--surface); padding: 20px 24px 28px; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .35s var(--ease); overflow-y: auto; }
+    .drawer.open { visibility: visible; }
+    .drawer.open .scrim { opacity: 1; }
+    .drawer.open .panel { transform: none; }
+    .drawer .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .drawer nav a { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 18px; font-weight: 500; }
+    .drawer nav a svg { width: 16px; height: 16px; color: var(--ink-3); }
+    .drawer .foot { margin-top: auto; padding-top: 24px; display: grid; gap: 10px; }
+    .drawer .contact { margin-top: 14px; font-size: 14px; color: var(--ink-2); display: grid; gap: 4px; text-align: center; }
+
+    /* ───────── Hero slider ───────── */
+    .hero { position: relative; background: var(--brand-d); }
+    /* height follows width so each 3:2 photo keeps most of its scene */
+    /* hero fills the screen below the header */
+    .slider { position: relative; height: calc(100vh - 80px); height: calc(100svh - 80px); min-height: 540px; overflow: hidden; }
+    .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 1s var(--ease), visibility 0s 1s; }
+    .slide.is-active { opacity: 1; visibility: visible; transition: opacity 1s var(--ease), visibility 0s; }
+    .slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+    /* subtle forest-green shade on the left for contrast, no white wash */
+    .slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(22,30,25,.64) 0%, rgba(22,30,25,.44) 32%, rgba(22,30,25,.1) 60%, rgba(22,30,25,0) 74%); }
+    .slide .wrap { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; padding-top: clamp(56px, 8vw, 104px); }
+    .slide-copy { max-width: 560px; display: grid; gap: 16px; }
+    /* outgoing text leaves quickly so two slides' copy never overlap mid-fade */
+    .slide-copy > * { opacity: 0; transform: translateY(12px); transition: opacity .25s, transform .25s; }
+    .slide.is-active .slide-copy > * { opacity: 1; transform: none; transition: opacity .7s var(--ease) .35s, transform .7s var(--ease) .35s; }
+    .slide.is-active .slide-copy > :nth-child(2) { transition-delay: .45s; }
+    .slider.first .slide-copy > * { transition: none !important; }   /* first slide is fully visible on load */
+    .slide h1, .slide h2 { font-family: var(--sans); font-weight: 700; font-size: clamp(38px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.03em; color: #FBF8F2; }
+    .slide p { margin: 0; font-size: clamp(16px, 1.45vw, 19px); color: rgba(251,248,242,.9); max-width: 36ch; }
+
+    .slider-ui { position: absolute; left: 0; right: 0; bottom: 116px; z-index: 2; pointer-events: none; }
+    .slider-ui .wrap { display: flex; justify-content: space-between; align-items: center; }
+    .dots { display: flex; gap: 8px; pointer-events: auto; }
+    .dots button { width: 30px; height: 4px; padding: 0; border: 0; border-radius: 2px; background: rgba(255,255,255,.45); box-shadow: 0 0 0 1px rgba(22,30,25,.12); cursor: pointer; position: relative; overflow: hidden; }
+    .dots button::after { content: ""; position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; }
+    .dots button[aria-current="true"]::after { transform: scaleX(1); transition: transform var(--dur, 6s) linear; }
+    .slider.paused .dots button[aria-current="true"]::after, .reduce .dots button[aria-current="true"]::after { transition: none; }
+    .arrows { display: flex; gap: 8px; pointer-events: auto; }
+    .arrows button { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.55); background: rgba(22,30,25,.32); color: #fff; display: grid; place-items: center; cursor: pointer; transition: background-color .2s, border-color .2s; }
+    .arrows button:hover { background: rgba(22,30,25,.5); border-color: #fff; }
+    .arrows svg { width: 18px; height: 18px; }
+
+    /* Booking card overlapping the bottom of the slider */
+    .book { position: relative; z-index: 3; margin-top: -96px; }
+    .book-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-lg); padding: 18px 20px 20px; }
+    .book-card h2 { font-family: var(--sans); font-size: 15.5px; font-weight: 700; line-height: 1.3; letter-spacing: 0; }
+    .types { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+    .types button { position: relative; display: flex; align-items: center; gap: 10px; min-height: 54px; padding: 8px 30px 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-align: left; font-size: 13.5px; font-weight: 500; line-height: 1.25; color: var(--ink-2); cursor: pointer; transition: border-color .2s, background-color .2s, color .2s; }
+    .types button > svg { display: block; width: 22px; height: 22px; flex: none; color: var(--ink); }
+    .types button:hover { border-color: var(--brand); }
+    .types button[aria-pressed="true"] { background: var(--brand-l); border-color: var(--brand-l); color: var(--brand-d); }
+    .types .tick { position: absolute; right: 10px; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--brand-d); color: #fff; display: grid; place-items: center; opacity: 0; transform: scale(.6); transition: opacity .2s, transform .2s; }
+    .types .tick svg { width: 11px; height: 11px; }
+    .types button[aria-pressed="true"] .tick { opacity: 1; transform: none; }
+    .book-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 16px; margin-top: 14px; }
+    .book-row [data-room] { width: 164px; }
+    .q-label { display: block; font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px; }
+    .stepper { display: flex; align-items: center; justify-content: space-between; height: 38px; border: 1px solid var(--line); border-radius: 10px; padding: 0 4px; }
+    .stepper button { width: 28px; height: 28px; border-radius: 7px; border: 0; background: var(--bg); cursor: pointer; font-size: 17px; line-height: 1; transition: background-color .2s; }
+    .stepper button:hover { background: var(--brand-l); }
+    .stepper output { font-weight: 700; font-size: 15px; font-variant-numeric: tabular-nums; }
+    .book-row .btn { height: 42px; min-width: 200px; margin-left: auto; font-weight: 700; }
+
+    /* ───────── Section panels: each section sits in its own bordered container ───────── */
+    .block { padding-top: clamp(20px, 2.4vw, 32px); }
+    .block-last { padding-bottom: 0; }
+    .box { background: var(--surface); border: 1px solid #DAD5C9; border-radius: 20px; padding: clamp(18px, 2.4vw, 30px); }
+    .box .benefit, .box .step { background: var(--bg); }
+    .box .sec-head { margin-bottom: clamp(16px, 2vw, 22px); align-items: center; }
+    /* ───────── Team and benefits ───────── */
+    .ic { width: 48px; height: 48px; border-radius: 12px; background: var(--gold-l); color: var(--gold-d); display: grid; place-items: center; margin-bottom: 8px; }
+    .ic svg { width: 23px; height: 23px; }
+    .team { display: grid; grid-template-columns: 1.08fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: stretch; }
+    .team-media { position: relative; min-height: 340px; max-width: 100%; border-radius: var(--r); overflow: hidden; background: var(--brand-l); }   /* matches the height of the text column */
+    .team-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 50%; }
+    .team-copy { align-self: center; }
+    .team-copy h2 { margin-top: 10px; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.05; }
+    .team-copy h2 em { color: var(--brand); }
+    .benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: clamp(16px, 2vw, 24px); }
+    .benefit { display: grid; gap: 4px; align-content: start; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); transition: border-color .2s, box-shadow .2s; }
+    .benefit:hover { border-color: var(--brand-l); box-shadow: var(--shadow); }
+    .benefit .ic { width: 40px; height: 40px; border-radius: 10px; background: var(--brand-l); color: var(--brand-d); margin-bottom: 4px; }
+    .benefit h3 { font-family: var(--sans); font-size: 16px; font-weight: 600; letter-spacing: 0; line-height: 1.3; }
+    .benefit p { margin: 0; color: var(--ink-3); font-size: 14px; line-height: 1.45; }
+    .tight-top { padding-top: 0; }
+
+    /* ───────── Services ───────── */
+    .services { padding-top: clamp(20px, 2.4vw, 32px); }
+    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .svc { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; transition: box-shadow .25s, transform .25s var(--ease), border-color .25s; }
+    .svc:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); border-color: transparent; }
+    .svc .media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; max-width: 100%; }
+    .svc .media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+    .svc:hover .media img { transform: scale(1.04); }
+    .svc .price { position: absolute; top: 12px; left: 12px; background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+    .svc .body { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px 18px; flex: 1; }
+    .svc .body h3 { font-size: 20px; }
+    .svc .body p { margin: 0; color: var(--ink-2); font-size: 14px; line-height: 1.5; flex: 1; }
+    .svc .link-arrow { margin-top: 2px; font-size: 14px; }
+
+    /* ───────── How it works ───────── */
+    .how-head { text-align: center; margin-bottom: clamp(18px, 2.4vw, 28px); }
+    .how-head h2 { font-size: clamp(32px, 3.8vw, 48px); line-height: 1.05; }
+    .how-head p { margin: 6px 0 0; font-family: var(--serif); font-size: clamp(20px, 2vw, 26px); line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); }
+    .how-head p em { font-style: italic; color: var(--brand); }
+    .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .step { display: grid; gap: 14px; align-content: start; padding: 18px 20px 20px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r); }
+    .step-top { display: flex; align-items: center; gap: 14px; }
+    .step .n { width: 40px; height: 40px; flex: none; border-radius: 50%; background: var(--forest); color: #fff; display: grid; place-items: center; font-family: var(--serif); font-size: 16px; font-variant-numeric: lining-nums; }
+    .step h3 { font-size: clamp(19px, 1.7vw, 22px); line-height: 1.2; }
+    .step p { margin: 0; color: var(--ink-2); font-size: 15px; line-height: 1.55; }
+
+    /* ───────── Areas ───────── */
+    .areas { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; background: var(--surface); border: 1px solid #DAD5C9; border-radius: 20px; padding: clamp(18px, 2.4vw, 30px); }
+    .areas-copy { display: grid; gap: 16px; justify-items: start; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+    .chips span { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-size: 14px; font-weight: 500; }
+    .chips svg { width: 14px; height: 14px; color: var(--brand); }
+    .map { position: relative; aspect-ratio: 1 / 1; width: 100%; border-radius: var(--r); background: var(--bg); border: 1px solid var(--line); overflow: hidden; }
+    .map-wrap { width: 100%; max-width: 440px; justify-self: end; display: grid; gap: 6px; }
+    .map-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(.45) sepia(.12) saturate(.9); }
+    .map-area { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .map-area path { fill: rgba(85,99,78,.09); stroke: var(--brand); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+    .pin { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; z-index: 1; }
+    .pin i { width: 14px; height: 14px; border-radius: 50%; background: var(--brand-d); border: 2.5px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.35); transition: transform .2s; }
+    /* city names appear on hover (OpenStreetMap already prints most of them) */
+    .pin span { position: absolute; bottom: calc(100% + 6px); white-space: nowrap; font-size: 12px; font-weight: 600; background: var(--surface); border: 1px solid var(--line); padding: 3px 9px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,.12); pointer-events: none; }
+    /* every city is labelled; side/below variants keep neighbouring labels apart */
+    .pin.left span { bottom: auto; top: 50%; right: calc(100% + 6px); transform: translateY(-50%); }
+    .pin.right span { bottom: auto; top: 50%; left: calc(100% + 6px); transform: translateY(-50%); }
+    .pin.below span { bottom: auto; top: calc(100% + 6px); }
+    .pin.left-up span { bottom: auto; top: 50%; right: calc(100% + 6px); transform: translateY(-70%); }
+    .pin.left-down span { bottom: auto; top: 50%; right: calc(100% + 6px); transform: translateY(-30%); }
+    .pin.right-up span { bottom: auto; top: 50%; left: calc(100% + 6px); transform: translateY(-80%); }
+    .pin.below-far span { bottom: auto; top: calc(100% + 6px); right: -32px; }
+    .pin.hl span { border-color: var(--brand); }
+    .pin:hover i, .pin.hl i { transform: scale(1.3); }
+    .pin.hq-pin i { width: 18px; height: 18px; background: var(--gold-d); }
+    .pin.hq-pin span { left: -8px; background: var(--brand-d); color: #fff; border-color: var(--brand-d); }   /* starts at the pin so it never runs off the left edge */
+    .chips span[data-city] { cursor: default; transition: border-color .2s, background-color .2s; }
+    .chips span[data-city]:hover { border-color: var(--brand); background: var(--brand-l); }
+    /* ───────── Footer: full-width deep charcoal-green band with sand accents ───────── */
+    .footer { margin-top: clamp(20px, 2.4vw, 32px); background: #1C2420; color: #EAE6DC; }
+    .foot-box { padding: clamp(36px, 4vw, 56px) 0 20px; }
+    .f-grid { display: grid; grid-template-columns: 1.4fr 1.15fr .95fr 1.3fr; gap: 32px; }
+    .f-logo { height: 38px; width: auto; filter: brightness(0) invert(1); }
+    .f-brand p { margin: 14px 0 0; max-width: 38ch; font-size: 14.5px; line-height: 1.55; color: rgba(234,230,220,.78); }
+    .f-grid h4 { margin: 4px 0 12px; font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+    .f-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14.5px; }
+    .f-grid ul li, .f-grid ul a { color: #EAE6DC; }
+    .f-grid ul a { transition: color .2s; }
+    .f-grid ul a:hover { color: #fff; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 4px; }
+    .f-contact { gap: 10px; }
+    .f-contact li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; align-items: start; overflow-wrap: anywhere; }
+    .f-contact svg { width: 18px; height: 18px; margin-top: 2px; color: var(--gold); }
+    .socials { display: flex; gap: 8px; margin-top: 16px; }
+    .socials a { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(205,167,112,.5); color: #EAE6DC; display: grid; place-items: center; transition: background-color .2s, border-color .2s; }
+    .socials a:hover { background: rgba(205,167,112,.14); border-color: var(--gold); }
+    .socials svg { width: 17px; height: 17px; }
+    .f-bottom { margin-top: clamp(24px, 3vw, 36px); padding-top: 16px; border-top: 1px solid rgba(234,230,220,.12); text-align: center; font-size: 13.5px; font-weight: 700; color: #fff; }
+
+    /* ───────── Subtle reveal (only when JS runs) ───────── */
+    .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 1260px) {
+      .nav { display: none; }
+      .burger { display: grid; }
+      .header .wrap { grid-template-columns: auto 1fr; }
+      .head-actions { grid-column: 2; }
+    }
+    /* ───────── Responsive ───────── */    @media (max-width: 1080px) {
+      .svc-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1000px) {
+      .types { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 820px) {
+      .team { grid-template-columns: 1fr; }
+      .team-media { min-height: 0; aspect-ratio: 16 / 11; }
+      .slider { min-height: 500px; }
+      .slide::after { background: linear-gradient(180deg, rgba(22,30,25,.66) 0%, rgba(22,30,25,.4) 38%, rgba(22,30,25,.06) 68%, rgba(22,30,25,0) 82%); }
+      .slide .wrap { padding-top: 40px; }
+      .steps { grid-template-columns: 1fr; }
+      .areas { grid-template-columns: 1fr; }
+      .map-wrap { justify-self: center; }
+      .f-grid { grid-template-columns: 1fr 1fr; }
+      .f-grid > :first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 600px) {
+      .header .wrap { height: 68px; gap: 12px; }
+      .slider { height: calc(100vh - 68px); height: calc(100svh - 68px); }
+      .logo img { height: 32px; }
+      .head-actions .btn-forest { height: 42px; padding: 0 14px; font-size: 14px; }
+      .track { width: 42px; height: 42px; padding: 0; }
+      .track span { display: none; }
+      .arrows { display: none; }
+      .book { margin-top: -72px; }
+      .slider-ui { bottom: 90px; }
+      .book-card { padding: 16px; }
+      .types { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .types button { min-height: 52px; gap: 8px; padding: 8px 28px 8px 10px; font-size: 13px; }
+      .types button > svg { width: 20px; height: 20px; }
+      .types .tick { right: 8px; }
+      .book-row { gap: 10px 12px; }
+      .book-row [data-room] { width: auto; flex: 1 1 0; min-width: 0; }
+      .book-row .btn { width: 100%; margin-left: 0; }
+      .svc-grid, .benefits { grid-template-columns: 1fr; }
+      .pin span { font-size: 10px; padding: 2px 6px; }
+      .pin[data-city="royal-oak"] span { left: auto; top: calc(100% + 5px); transform: none; }   /* below on phones, clear of Sterling Heights */
+      .pin.below-far span { right: -30px; }
+      .pin i { width: 11px; height: 11px; border-width: 2px; }
+      .benefits { gap: 10px; }
+      .benefit { padding: 16px; grid-template-columns: auto 1fr; column-gap: 14px; row-gap: 2px; }
+      .benefit .ic { grid-row: span 2; margin: 0; width: 42px; height: 42px; }
+      .f-grid { grid-template-columns: 1fr 1fr; gap: 22px 16px; }
+      .f-grid > :last-child { grid-column: 1 / -1; }
+      .f-grid ul { font-size: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .001ms !important; transition-delay: 0s !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ───────── Contact page ───────── */
+    .page-hero { position: relative; isolation: isolate; overflow: hidden; color: #FBF8F2; padding: clamp(56px, 7vw, 100px) 0 clamp(52px, 6.4vw, 92px); }
+    /* photo shown whole on the right, blurred copy behind it, soft shade under the heading */
+    .page-hero-bg { position: absolute; inset: -60px; z-index: -3; background-position: center; background-size: cover; filter: blur(34px) brightness(.8); }
+    .page-hero-img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: contain; object-position: 100% 50%; }
+    .page-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(22,30,25,.9) 0%, rgba(22,30,25,.72) 38%, rgba(22,30,25,.2) 68%, rgba(22,30,25,.08) 100%); }
+    .crumbs { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: rgba(251,248,242,.72); }
+    .crumbs a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+    .page-hero h1 { margin-top: 0; font-family: var(--sans); font-weight: 700; font-size: clamp(36px, 4.6vw, 56px); line-height: 1.05; letter-spacing: -0.03em; color: #FBF8F2; }
+    .page-hero h1 em { font-family: var(--serif); font-weight: 400; color: var(--gold); }
+    .page-hero p { margin: 12px 0 0; max-width: 54ch; font-size: clamp(16px, 1.4vw, 18px); color: rgba(251,248,242,.86); }
+
+    .contact { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(24px, 4vw, 56px); align-items: start; }
+    .contact-info h2 { margin-top: 10px; }
+    .contact-info > p { margin: 10px 0 0; color: var(--ink-2); }
+    .c-cards { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; }
+    .c-cards a { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r); transition: border-color .2s, box-shadow .2s; }
+    .c-cards a:hover { border-color: var(--brand); box-shadow: var(--shadow); }
+    .c-cards .ic { flex: none; width: 44px; height: 44px; margin: 0; border-radius: 12px; background: var(--brand-l); color: var(--brand-d); }
+    .c-cards .ic svg { width: 20px; height: 20px; }
+    .c-cards small { display: block; font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+    .c-cards b { display: block; font-size: 16px; font-weight: 600; color: var(--ink); overflow-wrap: anywhere; }
+    .c-cards em { display: block; font-style: normal; font-size: 14px; color: var(--ink-2); }
+    .c-quick { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .c-quick .btn { height: 46px; }
+
+    .c-form { display: grid; gap: 14px; padding: clamp(18px, 2.6vw, 28px); background: var(--bg); border: 1px solid var(--line); border-radius: var(--r); }
+    .c-form h3 { font-family: var(--sans); font-size: 18px; font-weight: 700; letter-spacing: 0; }
+    .c-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: grid; gap: 6px; min-width: 0; }
+    .field > span { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+    .field .count { font-style: normal; font-weight: 500; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+    .field input, .field textarea { width: 100%; padding: 12px 14px; font: inherit; font-size: 15px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; transition: border-color .2s, box-shadow .2s; }
+    .field textarea { min-height: 136px; resize: vertical; line-height: 1.5; }
+    .field input::placeholder, .field textarea::placeholder { color: var(--ink-3); }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(85,99,78,.16); }
+    .field.invalid input, .field.invalid textarea { border-color: #B5543F; }
+    .c-error { margin: 0; font-size: 13.5px; font-weight: 500; color: #A3402F; }
+    .c-submit { justify-self: start; height: 48px; font-weight: 700; }
+    .c-note { margin: -4px 0 0; font-size: 12.5px; color: var(--ink-3); }
+    .c-success { display: grid; gap: 4px; padding: 14px 16px; border-radius: 12px; background: var(--brand-l); color: var(--brand-d); font-size: 14.5px; }
+    @media (max-width: 820px) { .contact { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .page-hero::before { background: rgba(22,30,25,.66); } .page-hero-img { object-position: 50% 50%; } .c-row { grid-template-columns: 1fr; } .c-submit, .c-quick .btn { width: 100%; } }
+
+    /* ───────── Track my booking popup ───────── */
+    .tb-modal { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 16px; }
+    .tb-modal[hidden] { display: none; }
+    .tb-scrim { position: absolute; inset: 0; background: rgba(22,30,25,.55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); animation: tb-fade .2s ease-out; }
+    .tb-card { position: relative; width: min(440px, 100%); max-height: calc(100vh - 32px); overflow-y: auto; display: grid; gap: 14px; padding: clamp(22px, 4vw, 32px); background: var(--surface); border-radius: 20px; box-shadow: var(--shadow-lg); animation: tb-pop .25s var(--ease); }
+    .tb-x { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: var(--ink-2); display: grid; place-items: center; cursor: pointer; transition: background-color .2s; }
+    .tb-x:hover { background: var(--bg); }
+    .tb-x svg { width: 16px; height: 16px; }
+    .tb-ic { width: 48px; height: 48px; border-radius: 14px; background: var(--brand-l); color: var(--brand-d); display: grid; place-items: center; }
+    .tb-ic svg { width: 22px; height: 22px; }
+    .tb-card h2 { font-size: clamp(28px, 3vw, 34px); line-height: 1.1; }
+    .tb-lede { margin: -4px 0 4px; font-size: 15px; color: var(--ink-2); }
+    .tb-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; margin-top: 4px; }
+    .tb-actions .btn { height: 48px; font-weight: 700; }
+    .tb-note { display: grid; gap: 4px; padding: 14px 16px; border-radius: 12px; background: var(--gold-l); color: #5C431D; font-size: 14px; }
+    .tb-note[hidden] { display: none; }
+    .tb-note a { color: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    @keyframes tb-fade { from { opacity: 0; } }
+    @keyframes tb-pop { from { opacity: 0; transform: translateY(10px) scale(.98); } }
+    @media (prefers-reduced-motion: reduce) { .tb-scrim, .tb-card { animation: none; } }
+    .tb-card .field { display: grid; gap: 6px; }
+    .tb-card .field > span { font-size: 13px; font-weight: 600; color: var(--ink-2); }
+    .tb-card .field input { width: 100%; height: 48px; padding: 0 14px; font: inherit; font-size: 15px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; transition: border-color .2s, box-shadow .2s; }
+    .tb-card .field input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(85,99,78,.16); }
+    .tb-card .field.invalid input { border-color: #B5543F; }
+    .tb-card .c-error { margin: 0; font-size: 13.5px; font-weight: 500; color: #A3402F; }
+    /* ───────── Services page ───────── */
+    .s-jump { position: sticky; top: 80px; z-index: 20; background: rgba(246,244,239,.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .s-jump ul { display: flex; gap: 8px; margin: 0; padding: 12px 0; list-style: none; overflow-x: auto; scrollbar-width: none; }
+    .s-jump ul::-webkit-scrollbar { display: none; }
+    .s-jump a { display: inline-flex; align-items: center; height: 38px; padding: 0 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink-2); font-size: 14px; font-weight: 600; white-space: nowrap; transition: background-color .2s, color .2s, border-color .2s; }
+    .s-jump a:hover { border-color: var(--ink-3); color: var(--ink); }
+    .s-jump a.active { background: var(--forest); border-color: var(--forest); color: #fff; }
+    .s-item { scroll-margin-top: 40px; }  /* adds to the page's 96px scroll padding, clearing the header and jump bar */
+    .s-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: clamp(22px, 3.4vw, 48px); align-items: center; }
+    .s-item:nth-of-type(even) .s-media { order: 2; }
+    .s-media { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--brand-l); }
+    .s-media img { width: 100%; height: 100%; object-fit: cover; }
+    .s-media .price { position: absolute; top: 14px; left: 14px; background: var(--surface); color: var(--ink); font-size: 13.5px; font-weight: 700; padding: 7px 14px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+    .s-num { font-family: var(--serif); font-size: 15px; color: var(--gold-d); letter-spacing: .08em; }
+    .s-body h2 { margin: 6px 0 10px; font-size: clamp(28px, 3vw, 38px); line-height: 1.08; }
+    .s-body h2 em { font-family: var(--serif); font-weight: 400; color: var(--brand); }
+    .s-lede { margin: 0 0 18px; color: var(--ink-2); font-size: 16px; max-width: 56ch; }
+    .s-points { display: grid; gap: 12px; margin: 0 0 22px; padding: 0; list-style: none; }
+    .s-points li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+    .s-points li b { color: var(--ink); font-weight: 700; }
+    .s-points .tick { width: 28px; height: 28px; border-radius: 50%; background: var(--brand-l); color: var(--brand-d); display: grid; place-items: center; margin-top: -2px; }
+    .s-points .tick svg { width: 15px; height: 15px; }
+    .s-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .s-actions .btn { height: 48px; font-weight: 700; }
+    @media (max-width: 900px) {
+      .s-card { grid-template-columns: 1fr; }
+      .s-item:nth-of-type(even) .s-media { order: 0; }
+      .s-media { aspect-ratio: 16 / 9; }
+    }
+    @media (max-width: 600px) {
+      .s-jump { top: 68px; }
+      .s-item { scroll-margin-top: 30px; }
+      .s-actions .btn { flex: 1; }
+    }
+  </style>
+</head>
+<body class="no-js">
+  <script>document.body.classList.replace('no-js', 'js'); if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.body.classList.add('reduce');</script>
+
+  <!-- ═════════ Header ═════════ -->
+  <header class="header">
+    <div class="wrap">
+      <a href="index.html" class="logo" aria-label="Bambi Cleaning home"><img src="assets/logo-horizontal.svg" alt="Bambi Cleaning" width="143" height="38" /></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+        <a href="services.html" class="active" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="15" y="5" width="4" height="4"/><path d="m19 9 2 2v10a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V11l2-2"/><path d="m13 14 8-2"/><path d="m13 19 8-2"/><path d="M3 3h.01M7 5h.01M11 7h.01M3 7h.01M7 9h.01M3 11h.01"/></svg>Services</a>
+        <a href="index.html#how"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="m9 13 2 2 4-4"/></svg>How it works</a>
+        <a href="index.html#areas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Areas</a>
+        <a href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Contact</a>
+      </nav>
+      <div class="head-actions">
+        <a class="btn btn-ink btn-head track" href="#track" data-track aria-label="Track booking"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M16 3v4M8 3v4M3 11h18M9 16l2 2 4-4"/></svg><span>Track booking</span></a>
+        <a class="btn btn-forest btn-head" href="book.html">Book Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="scrim" data-close></div>
+    <div class="panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="top">
+        <img src="assets/logo-horizontal.svg" alt="Bambi Cleaning" style="height:32px;width:auto" />
+        <button class="burger" style="display:grid" aria-label="Close menu" data-close>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <nav aria-label="Mobile">
+        <a href="index.html" data-close>Home <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a href="services.html" data-close>Services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a href="index.html#how" data-close>How it works <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a href="index.html#areas" data-close>Areas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
+        <a href="contact.html">Contact <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></a>
+      </nav>
+      <div class="foot">
+        <a class="btn btn-gold" href="book.html">Book a clean</a>
+        <a class="btn btn-line" href="book.html">Get a quote</a>
+        <a class="btn btn-line" href="#track" data-track>Track my booking</a>
+        <div class="contact"><a href="tel:+17343606176">(734) 360-6176</a><a href="mailto:admin@bambicleaning.com">admin@bambicleaning.com</a></div>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <!-- Page header -->
+    <section class="page-hero" aria-labelledby="services-title">
+      <div class="page-hero-bg" style="background-image:url('assets/hero-living-1800.webp')" aria-hidden="true"></div>
+      <img class="page-hero-img" src="assets/hero-living-1800.webp" alt="" width="1800" height="1200" />
+      <div class="wrap">
+        <h1 id="services-title">Our Cleaning <em>Services</em></h1>
+        <p>From weekly home cleans to post-renovation detail work, every service follows a clear checklist and is carried out by insured, background-checked cleaners.</p>
+      </div>
+    </section>
+
+    <nav class="s-jump" aria-label="Jump to a service">
+      <div class="wrap">
+        <ul>
+          <li><a href="#residential-cleaning">Residential</a></li>
+          <li><a href="#short-term-rental-cleaning">Short-term rental</a></li>
+          <li><a href="#office-cleaning">Office</a></li>
+          <li><a href="#shared-space-cleaning">Shared space</a></li>
+          <li><a href="#move-in-move-out-cleaning">Move-in / move-out</a></li>
+          <li><a href="#after-construction-cleaning">After-construction</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="block s-item" id="residential-cleaning" aria-labelledby="residential-cleaning-title">
+      <div class="wrap"><div class="box s-card">
+        <div class="s-media">
+          <img src="assets/residential-760.webp" srcset="assets/residential-760.webp 760w, assets/residential-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 560px" alt="" width="760" height="570" decoding="async" />
+          <span class="price">From $150</span>
+        </div>
+        <div class="s-body">
+          <span class="s-num">01</span>
+          <h2 id="residential-cleaning-title">Residential <em>cleaning</em></h2>
+          <p class="s-lede">Routine or deep cleaning for homes and apartments, so every kitchen, bathroom, bedroom and living space feels fresh.</p>
+          <ul class="s-points">
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Routine cleaning:</b> dusting, vacuuming, mopping, trash removal, kitchen surface wipe-downs and bathroom sanitization.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Deep cleaning (on demand):</b> inside appliances, cabinet interiors, baseboards, window sills, and grout and tile scrubbing.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Optional add-ons:</b> upholstery care, oven and fridge deep clean, inside-window cleaning, and eco-friendly product preference.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Flexible schedules:</b> weekly, bi-weekly, monthly or one-off deep cleans, with fully insured staff and a checklist-driven service.</span></li>
+          </ul>
+          <div class="s-actions">
+            <a class="btn btn-forest" href="book.html?type=residential"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg> Book Now</a>
+            <a class="btn btn-line" href="contact.html">Ask a question</a>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <section class="block s-item" id="short-term-rental-cleaning" aria-labelledby="short-term-rental-cleaning-title">
+      <div class="wrap"><div class="box s-card">
+        <div class="s-media">
+          <img src="assets/short-term-rental-760.webp" srcset="assets/short-term-rental-760.webp 760w, assets/short-term-rental-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 560px" alt="" width="760" height="570" decoding="async" loading="lazy" />
+          <span class="price">From $175</span>
+        </div>
+        <div class="s-body">
+          <span class="s-num">02</span>
+          <h2 id="short-term-rental-cleaning-title">Short-term rental <em>cleaning</em></h2>
+          <p class="s-lede">Fast, detailed turnovers between guests, so every stay starts with a five-star first impression.</p>
+          <ul class="s-points">
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Full turnover checklist:</b> change and launder linens, make beds, restock toiletries and guest essentials, and empty trash.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Kitchen and bathroom reset:</b> sanitize surfaces, restock consumables, clean appliances and check that amenities work.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Staging and inspection:</b> tidy and arrange for photos if requested, report damages, and turn around quickly between bookings.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Laundry and records:</b> laundry handling, optional linen rental coordination, and a documented checklist for each stay.</span></li>
+          </ul>
+          <div class="s-actions">
+            <a class="btn btn-forest" href="book.html?type=short-term-rental"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg> Book Now</a>
+            <a class="btn btn-line" href="contact.html">Ask a question</a>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <section class="block s-item" id="office-cleaning" aria-labelledby="office-cleaning-title">
+      <div class="wrap"><div class="box s-card">
+        <div class="s-media">
+          <img src="assets/office-760.webp" srcset="assets/office-760.webp 760w, assets/office-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 560px" alt="" width="760" height="570" decoding="async" loading="lazy" />
+          <span class="price">Custom quote</span>
+        </div>
+        <div class="s-body">
+          <span class="s-num">03</span>
+          <h2 id="office-cleaning-title">Office <em>cleaning</em></h2>
+          <p class="s-lede">Professional cleaning for workspaces that keeps desks, meeting rooms and breakrooms ready for a productive day.</p>
+          <ul class="s-points">
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Workstation care:</b> dusting electronics and desks (no personal items moved), trash and recycling removal, and surface wipe-downs.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Common area maintenance:</b> vacuuming and mopping, conference room setup, glass and whiteboard cleaning, and lobby upkeep.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Restroom and breakroom sanitation:</b> disinfecting high-touch points, replenishing paper supplies and cleaning appliance exteriors.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Flexible plans:</b> daily, nightly or weekend service, with optional supply restocking and green-cleaning options.</span></li>
+          </ul>
+          <div class="s-actions">
+            <a class="btn btn-forest" href="book.html?type=commercial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg> Book Now</a>
+            <a class="btn btn-line" href="contact.html">Ask a question</a>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <section class="block s-item" id="shared-space-cleaning" aria-labelledby="shared-space-cleaning-title">
+      <div class="wrap"><div class="box s-card">
+        <div class="s-media">
+          <img src="assets/shared-space-760.webp" srcset="assets/shared-space-760.webp 760w, assets/shared-space-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 560px" alt="" width="760" height="570" decoding="async" loading="lazy" />
+          <span class="price">Custom quote</span>
+        </div>
+        <div class="s-body">
+          <span class="s-num">04</span>
+          <h2 id="shared-space-cleaning-title">Shared space <em>cleaning</em></h2>
+          <p class="s-lede">Lobbies, hallways, waiting rooms and other communal areas kept tidy, hygienic and welcoming all day.</p>
+          <ul class="s-points">
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>High-touch sanitization:</b> door handles, elevator buttons, handrails, seating areas and reception surfaces.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Floor and surface care:</b> sweeping, mopping, vacuuming, spot-cleaning carpets and polishing hard floors.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Appearance upkeep:</b> glass and entrance cleaning, trash removal, restocking dispensers and odor control.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Scheduled frequency:</b> options to match foot traffic, from daily or several times a day to nightly rotations.</span></li>
+          </ul>
+          <div class="s-actions">
+            <a class="btn btn-forest" href="book.html?type=commercial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg> Book Now</a>
+            <a class="btn btn-line" href="contact.html">Ask a question</a>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <section class="block s-item" id="move-in-move-out-cleaning" aria-labelledby="move-in-move-out-cleaning-title">
+      <div class="wrap"><div class="box s-card">
+        <div class="s-media">
+          <img src="assets/move-in-out-760.webp" srcset="assets/move-in-out-760.webp 760w, assets/move-in-out-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 560px" alt="" width="760" height="570" decoding="async" loading="lazy" />
+          <span class="price">Instant quote</span>
+        </div>
+        <div class="s-body">
+          <span class="s-num">05</span>
+          <h2 id="move-in-move-out-cleaning-title">Move-in / move-out <em>cleaning</em></h2>
+          <p class="s-lede">A top-to-bottom clean of a vacant home or apartment, ready for the keys to change hands.</p>
+          <ul class="s-points">
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Complete deep clean:</b> inside ovens, refrigerators, cabinets and drawers, window tracks and baseboards.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Bathroom intensive:</b> descaling showers and tubs, grout cleaning, toilet sanitation, and mirror and fixture polishing.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Final touch-ups:</b> dusting vents and light fixtures, debris removal, and paint touch-up recommendations (we don't paint).</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Inspection support:</b> a move-out checklist and photos on request, for deposit inspections or real-estate handovers.</span></li>
+          </ul>
+          <div class="s-actions">
+            <a class="btn btn-forest" href="book.html?type=move-in-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg> Book Now</a>
+            <a class="btn btn-line" href="contact.html">Ask a question</a>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <section class="block s-item" id="after-construction-cleaning" aria-labelledby="after-construction-cleaning-title">
+      <div class="wrap"><div class="box s-card">
+        <div class="s-media">
+          <img src="assets/after-construction-760.webp" srcset="assets/after-construction-760.webp 760w, assets/after-construction-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 560px" alt="" width="760" height="570" decoding="async" loading="lazy" />
+          <span class="price">Custom quote</span>
+        </div>
+        <div class="s-body">
+          <span class="s-num">06</span>
+          <h2 id="after-construction-cleaning-title">After-construction <em>cleaning</em></h2>
+          <p class="s-lede">Dust, debris and residue cleared after building or remodeling, leaving the space safe and move-in ready.</p>
+          <ul class="s-points">
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Rough clean:</b> removing construction debris, large dust build-up and material waste from the site.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Fine clean:</b> wiping down every surface, removing drywall dust from fixtures, and cleaning vents, lights and baseboards.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Specialty tasks:</b> adhesive and paint-splatter removal, window and glass polishing, and floor finish prep and final polish.</span></li>
+                <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><span><b>Final walkthrough:</b> a checklist-based inspection, touch-up cleaning and sign-off, so the space is ready to occupy.</span></li>
+          </ul>
+          <div class="s-actions">
+            <a class="btn btn-forest" href="book.html?type=post-construction"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg> Book Now</a>
+            <a class="btn btn-line" href="contact.html">Ask a question</a>
+          </div>
+        </div>
+      </div></div>
+    </section>
+  </main>
+
+  <!-- ═════════ Footer ═════════ -->
+  <footer class="footer">
+    <div class="wrap"><div class="foot-box">
+      <div class="f-grid">
+        <div class="f-brand">
+          <img class="f-logo" src="assets/logo-horizontal.svg" alt="Bambi Cleaning" width="173" height="46" />
+          <p>Bambi Cleaning provides professional cleaning for homes, rental properties, and workplaces across Southeast Michigan. We offer flexible services tailored to your space and schedule.</p>
+          <div class="socials">
+            <a href="https://www.instagram.com/bambicleaning/" aria-label="Bambi Cleaning on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4>Our Services</h4>
+          <ul>
+            <li>Standard Cleaning</li>
+            <li>Residential Cleaning</li>
+            <li>Rental Cleaning</li>
+            <li>Move-In / Move-Out Cleaning</li>
+            <li>Office Cleaning</li>
+            <li>Post-Construction Cleaning</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="index.html#how">How It Works</a></li>
+            <li><a href="index.html#areas">Service Areas</a></li>
+            <li><a href="#track" data-track>Track Booking</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get in Touch</h4>
+          <ul class="f-contact">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+17343606176">(734) 360-6176</a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:admin@bambicleaning.com">admin@bambicleaning.com</a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><a href="https://www.google.com/maps/place/2500+Packard+Rd+Ste+201C,+Ann+Arbor,+MI+48104,+USA/data=!4m2!3m1!1s0x883cafa638c3d5ab:0x5264ac7f326285e7" target="_blank" rel="noopener">2500 Packard Rd, Suite 201C<br />Ann Arbor, MI 48104</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="f-bottom">© <span id="year">2026</span> Bambi Cleaning. All rights reserved.</div>
+    </div></div>
+  </footer>
+
+  <!-- ═════════ Track my booking (popup) ═════════ -->
+  <div class="tb-modal" id="track-modal" hidden>
+    <div class="tb-scrim" data-tb-close></div>
+    <form class="tb-card" id="track-form" role="dialog" aria-modal="true" aria-labelledby="tb-title" novalidate>
+      <button type="button" class="tb-x" data-tb-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <span class="tb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M16 3v4M8 3v4M3 11h18M9 16l2 2 4-4"/></svg></span>
+      <h2 id="tb-title">Track my <em>booking</em></h2>
+      <p class="tb-lede">Enter the Booking ID and one-time code (OTP) from your confirmation email.</p>
+      <label class="field" for="tb-id"><span>Booking ID</span><input id="tb-id" name="bookingId" type="text" placeholder="Your Booking ID" autocomplete="off" required /></label>
+      <label class="field" for="tb-otp"><span>OTP</span><input id="tb-otp" name="otp" type="text" inputmode="numeric" placeholder="One-time code" autocomplete="one-time-code" required /></label>
+      <p class="c-error" id="tb-err" role="alert" hidden></p>
+      <div class="tb-actions">
+        <button type="button" class="btn btn-line" data-tb-close>Cancel</button>
+        <button type="submit" class="btn btn-forest">Find booking</button>
+      </div>
+      <div class="tb-note" id="tb-note" role="status" hidden>
+        <b>We can't open bookings on this page yet.</b>
+        <span>Call <a href="tel:+17343606176">(734) 360-6176</a> or email <a href="mailto:admin@bambicleaning.com">admin@bambicleaning.com</a> with Booking ID <b id="tb-note-id"></b>, and we'll help you right away.</span>
+      </div>
+    </form>
+  </div>
+
+  <script>
+  (() => {
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    $('#year').textContent = new Date().getFullYear();
+
+    /* Header: border on scroll */
+    const header = $('.header');
+    const onScroll = () => header.classList.toggle('scrolled', scrollY > 40);
+    onScroll();
+    addEventListener('scroll', onScroll, { passive: true });
+
+    /* Mobile drawer */
+    const drawer = $('#drawer');
+    const openBtn = $('.header .burger');
+    const setMenu = (open) => {
+      drawer.classList.toggle('open', open);
+      drawer.setAttribute('aria-hidden', String(!open));
+      openBtn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+      if (open) $('.panel [data-close]', drawer).focus(); else openBtn.focus();
+    };
+    openBtn.addEventListener('click', () => setMenu(true));
+    $$('[data-close]', drawer).forEach((el) => el.addEventListener('click', () => setMenu(false)));
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && drawer.classList.contains('open')) setMenu(false); });
+
+    /* Jump bar: highlight the service in view */
+    const jump = $$('.s-jump a');
+    if ('IntersectionObserver' in window) {
+      const spy = new IntersectionObserver((entries) => entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        jump.forEach((a) => {
+          const on = a.getAttribute('href') === `#${e.target.id}`;
+          a.classList.toggle('active', on);
+          if (on) a.parentElement.parentElement.scrollTo({ left: a.offsetLeft - 16, behavior: reduce ? 'auto' : 'smooth' });
+        });
+      }), { rootMargin: '-45% 0px -50% 0px' });
+      $$('.s-item').forEach((el) => spy.observe(el));
+    }
+    /* Subtle reveal on scroll */
+    if (!reduce && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }), { rootMargin: '0px 0px -8% 0px' });
+      $$('.reveal').forEach((el) => io.observe(el));
+    } else {
+      $$('.reveal').forEach((el) => el.classList.add('in'));
+    }
+  })();
+  </script>
+  <script>
+  /* Track my booking popup: opens from every "Track booking" link */
+  (() => {
+    const modal = document.getElementById('track-modal');
+    const form = document.getElementById('track-form');
+    const id = document.getElementById('tb-id');
+    const otp = document.getElementById('tb-otp');
+    const err = document.getElementById('tb-err');
+    const note = document.getElementById('tb-note');
+    let lastFocus = null;
+    const open = () => {
+      const drawer = document.getElementById('drawer');
+      if (drawer && drawer.classList.contains('open')) {
+        drawer.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+      }
+      lastFocus = document.activeElement;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      id.focus();
+    };
+    const close = () => {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      err.hidden = true; note.hidden = true;
+      [id, otp].forEach((el) => el.closest('.field').classList.remove('invalid'));
+      if (lastFocus) lastFocus.focus();
+    };
+    document.querySelectorAll('[data-track]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); open(); }));
+    modal.querySelectorAll('[data-tb-close]').forEach((b) => b.addEventListener('click', close));
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
+    [id, otp].forEach((el) => el.addEventListener('input', () => { el.closest('.field').classList.remove('invalid'); err.hidden = true; }));
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const problems = [];
+      if (!id.value.trim()) problems.push([id, 'Enter your Booking ID.']);
+      if (!otp.value.trim()) problems.push([otp, 'Enter the OTP from your email.']);
+      if (problems.length) {
+        problems.forEach(([el]) => el.closest('.field').classList.add('invalid'));
+        err.textContent = problems.map(([, t]) => t).join(' ');
+        err.hidden = false;
+        problems[0][0].focus();
+        return;
+      }
+      document.getElementById('tb-note-id').textContent = id.value.trim();
+      note.hidden = false;
+    });
+    if (location.hash === '#track') open();
+  })();
+  </script>
+</body>
+</html>
