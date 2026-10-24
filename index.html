@@ -165,25 +165,25 @@
     .arrows svg { width: 18px; height: 18px; }
 
     /* Booking card overlapping the bottom of the slider */
-    .book { position: relative; z-index: 3; margin-top: -96px; }
-    .book-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-lg); padding: 18px 20px 20px; }
-    .book-card h2 { font-family: var(--sans); font-size: 15.5px; font-weight: 700; line-height: 1.3; letter-spacing: 0; }
-    .types { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
-    .types button { position: relative; display: flex; align-items: center; gap: 10px; min-height: 54px; padding: 8px 30px 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-align: left; font-size: 13.5px; font-weight: 500; line-height: 1.25; color: var(--ink-2); cursor: pointer; transition: border-color .2s, background-color .2s, color .2s; }
-    .types button > svg { display: block; width: 22px; height: 22px; flex: none; color: var(--ink); }
+    .book { position: relative; z-index: 3; width: min(1080px, 100%); margin: -84px auto clamp(6px, 1vw, 12px); }
+    .book-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-lg); padding: 14px 16px 16px; }
+    .book-card h2 { font-family: var(--sans); font-size: 14.5px; font-weight: 700; line-height: 1.3; letter-spacing: 0; }
+    .types { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+    .types button { position: relative; display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 26px 6px 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); text-align: left; font-size: 12.5px; font-weight: 500; line-height: 1.25; color: var(--ink-2); cursor: pointer; transition: border-color .2s, background-color .2s, color .2s; }
+    .types button > svg { display: block; width: 18px; height: 18px; flex: none; color: var(--ink); }
     .types button:hover { border-color: var(--brand); }
     .types button[aria-pressed="true"] { background: var(--brand-l); border-color: var(--brand-l); color: var(--brand-d); }
-    .types .tick { position: absolute; right: 10px; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--brand-d); color: #fff; display: grid; place-items: center; opacity: 0; transform: scale(.6); transition: opacity .2s, transform .2s; }
-    .types .tick svg { width: 11px; height: 11px; }
+    .types .tick { position: absolute; right: 8px; top: 50%; width: 16px; height: 16px; margin-top: -8px; border-radius: 50%; background: var(--brand-d); color: #fff; display: grid; place-items: center; opacity: 0; transform: scale(.6); transition: opacity .2s, transform .2s; }
+    .types .tick svg { width: 10px; height: 10px; }
     .types button[aria-pressed="true"] .tick { opacity: 1; transform: none; }
-    .book-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 16px; margin-top: 14px; }
-    .book-row [data-room] { width: 164px; }
+    .book-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 14px; margin-top: 10px; }
+    .book-row [data-room] { width: 140px; }
     .q-label { display: block; font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px; }
-    .stepper { display: flex; align-items: center; justify-content: space-between; height: 38px; border: 1px solid var(--line); border-radius: 10px; padding: 0 4px; }
+    .stepper { display: flex; align-items: center; justify-content: space-between; height: 36px; border: 1px solid var(--line); border-radius: 10px; padding: 0 4px; }
     .stepper button { width: 28px; height: 28px; border-radius: 7px; border: 0; background: var(--bg); cursor: pointer; font-size: 17px; line-height: 1; transition: background-color .2s; }
     .stepper button:hover { background: var(--brand-l); }
     .stepper output { font-weight: 700; font-size: 15px; font-variant-numeric: tabular-nums; }
-    .book-row .btn { height: 42px; min-width: 200px; margin-left: auto; font-weight: 700; }
+    .book-row .btn { height: 38px; min-width: 170px; font-size: 14px; margin-left: auto; font-weight: 700; }
 
     /* ───────── Section panels: each section sits in its own bordered container ───────── */
     .block { padding-top: clamp(20px, 2.4vw, 32px); }
@@ -270,25 +270,25 @@
     .pin.hq-pin span { left: -8px; background: var(--brand-d); color: #fff; border-color: var(--brand-d); }   /* starts at the pin so it never runs off the left edge */
     .chips span[data-city] { cursor: default; transition: border-color .2s, background-color .2s; }
     .chips span[data-city]:hover { border-color: var(--brand); background: var(--brand-l); }
-    /* ───────── Footer: full-width deep charcoal-green band with sand accents ───────── */
-    .footer { margin-top: clamp(20px, 2.4vw, 32px); background: #1C2420; color: #EAE6DC; }
+    /* ───────── Footer: full-width warm cream band ───────── */
+    .footer { margin-top: clamp(20px, 2.4vw, 32px); background: #FAF7F1; color: var(--ink); border-top: 1px solid var(--line); }
     .foot-box { padding: clamp(36px, 4vw, 56px) 0 20px; }
     .f-grid { display: grid; grid-template-columns: 1.4fr 1.15fr .95fr 1.3fr; gap: 32px; }
-    .f-logo { height: 38px; width: auto; filter: brightness(0) invert(1); }
-    .f-brand p { margin: 14px 0 0; max-width: 38ch; font-size: 14.5px; line-height: 1.55; color: rgba(234,230,220,.78); }
-    .f-grid h4 { margin: 4px 0 12px; font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+    .f-logo { height: 38px; width: auto; }
+    .f-brand p { margin: 14px 0 0; max-width: 38ch; font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+    .f-grid h4 { margin: 4px 0 12px; font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-d); }
     .f-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14.5px; }
-    .f-grid ul li, .f-grid ul a { color: #EAE6DC; }
+    .f-grid ul li, .f-grid ul a { color: var(--ink-2); }
     .f-grid ul a { transition: color .2s; }
-    .f-grid ul a:hover { color: #fff; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 4px; }
+    .f-grid ul a:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 4px; }
     .f-contact { gap: 10px; }
     .f-contact li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; align-items: start; overflow-wrap: anywhere; }
-    .f-contact svg { width: 18px; height: 18px; margin-top: 2px; color: var(--gold); }
+    .f-contact svg { width: 18px; height: 18px; margin-top: 2px; color: var(--gold-d); }
     .socials { display: flex; gap: 8px; margin-top: 16px; }
-    .socials a { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(205,167,112,.5); color: #EAE6DC; display: grid; place-items: center; transition: background-color .2s, border-color .2s; }
+    .socials a { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(205,167,112,.6); color: var(--ink); display: grid; place-items: center; transition: background-color .2s, border-color .2s; }
     .socials a:hover { background: rgba(205,167,112,.14); border-color: var(--gold); }
     .socials svg { width: 17px; height: 17px; }
-    .f-bottom { margin-top: clamp(24px, 3vw, 36px); padding-top: 16px; border-top: 1px solid rgba(234,230,220,.12); text-align: center; font-size: 13.5px; font-weight: 700; color: #fff; }
+    .f-bottom { margin-top: clamp(24px, 3vw, 36px); padding-top: 16px; border-top: 1px solid var(--line); text-align: center; font-size: 13.5px; font-weight: 700; color: var(--ink); }
 
     /* ───────── Subtle reveal (only when JS runs) ───────── */
     .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
@@ -327,7 +327,7 @@
       .track { width: 42px; height: 42px; padding: 0; }
       .track span { display: none; }
       .arrows { display: none; }
-      .book { margin-top: -72px; }
+      .book { margin-top: -64px; }
       .slider-ui { bottom: 90px; }
       .book-card { padding: 16px; }
       .types { grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -480,10 +480,6 @@
               <button type="button" aria-label="Slide 3" aria-current="false"></button>
               <button type="button" aria-label="Slide 4" aria-current="false"></button>
             </div>
-            <div class="arrows">
-              <button type="button" data-dir="-1" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg></button>
-              <button type="button" data-dir="1" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></button>
-            </div>
           </div>
         </div>
       </div>
@@ -542,11 +538,11 @@
         <div class="svc-viewport">
         <div class="svc-grid">
           <a class="svc" href="services.html#residential-cleaning">
-            <div class="media"><img src="assets/residential-760.webp" srcset="assets/residential-760.webp 760w, assets/residential-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" decoding="async" /><span class="price">From $150</span></div>
+            <div class="media"><img src="assets/residential-760.webp" srcset="assets/residential-760.webp 760w, assets/residential-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" decoding="async" /><span class="price">Instant quote</span></div>
             <div class="body"><h3>Residential cleaning</h3><p>Routine or deep cleaning for homes and apartments — kitchens, bathrooms, living spaces, bedrooms, and floors.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
           <a class="svc" href="services.html#short-term-rental-cleaning">
-            <div class="media"><img src="assets/short-term-rental-760.webp" srcset="assets/short-term-rental-760.webp 760w, assets/short-term-rental-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" decoding="async" /><span class="price">From $175</span></div>
+            <div class="media"><img src="assets/short-term-rental-760.webp" srcset="assets/short-term-rental-760.webp 760w, assets/short-term-rental-1400.webp 1400w" sizes="(max-width: 600px) 92vw, (max-width: 1080px) 46vw, 400px" alt="" decoding="async" /><span class="price">Instant quote</span></div>
             <div class="body"><h3>Short-term rental cleaning</h3><p>Fast, detailed turnover service between guests — fresh linens, restocking essentials, kitchen and bathroom reset.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
           <a class="svc" href="services.html#move-in-move-out-cleaning">
@@ -774,7 +770,7 @@
     const slider = $('.slider');
     const slides = $$('.slide', slider);
     const dots = $$('.dots button', slider);
-    const DUR = 6000;
+    const DUR = 2000;
     slider.style.setProperty('--dur', `${DUR}ms`);
     let idx = 0, timer = null;
     const show = (i) => {
