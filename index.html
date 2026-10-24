@@ -134,7 +134,7 @@
     .hero { position: relative; background: var(--brand-d); }
     /* height follows width so each 3:2 photo keeps most of its scene */
     /* hero fills the screen below the header */
-    .slider { position: relative; height: calc(100vh - 80px); height: calc(100svh - 80px); min-height: 540px; overflow: hidden; }
+    .slider { position: relative; height: calc(100vh - 150px); height: calc(100svh - 150px); min-height: 520px; overflow: hidden; }   /* leaves room for the booking card on the first screen */
     .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 1s var(--ease), visibility 0s 1s; }
     .slide.is-active { opacity: 1; visibility: visible; transition: opacity 1s var(--ease), visibility 0s; }
     /* show each photo whole (no crop); a blurred copy fills the spare space around it */
@@ -152,20 +152,9 @@
     .slide h1, .slide h2 { font-family: var(--sans); font-weight: 700; font-size: clamp(38px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.03em; color: #FBF8F2; }
     .slide p { margin: 0; font-size: clamp(16px, 1.45vw, 19px); color: rgba(251,248,242,.9); max-width: 36ch; }
 
-    .slider-ui { position: absolute; left: 0; right: 0; bottom: 116px; z-index: 2; pointer-events: none; }
-    .slider-ui .wrap { display: flex; justify-content: space-between; align-items: center; }
-    .dots { display: flex; gap: 8px; pointer-events: auto; }
-    .dots button { width: 30px; height: 4px; padding: 0; border: 0; border-radius: 2px; background: rgba(255,255,255,.45); box-shadow: 0 0 0 1px rgba(22,30,25,.12); cursor: pointer; position: relative; overflow: hidden; }
-    .dots button::after { content: ""; position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; }
-    .dots button[aria-current="true"]::after { transform: scaleX(1); transition: transform var(--dur, 6s) linear; }
-    .slider.paused .dots button[aria-current="true"]::after, .reduce .dots button[aria-current="true"]::after { transition: none; }
-    .arrows { display: flex; gap: 8px; pointer-events: auto; }
-    .arrows button { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.55); background: rgba(22,30,25,.32); color: #fff; display: grid; place-items: center; cursor: pointer; transition: background-color .2s, border-color .2s; }
-    .arrows button:hover { background: rgba(22,30,25,.5); border-color: #fff; }
-    .arrows svg { width: 18px; height: 18px; }
 
     /* Booking card overlapping the bottom of the slider */
-    .book { position: relative; z-index: 3; width: min(1080px, 100%); margin: -84px auto clamp(6px, 1vw, 12px); }
+    .book { position: relative; z-index: 3; width: min(1080px, 100%); margin: -150px auto clamp(6px, 1vw, 12px); }
     .book-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-lg); padding: 14px 16px 16px; }
     .book-card h2 { font-family: var(--sans); font-size: 14.5px; font-weight: 700; line-height: 1.3; letter-spacing: 0; }
     .types { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
@@ -326,9 +315,7 @@
       .head-actions .btn-forest { height: 42px; padding: 0 14px; font-size: 14px; }
       .track { width: 42px; height: 42px; padding: 0; }
       .track span { display: none; }
-      .arrows { display: none; }
-      .book { margin-top: -64px; }
-      .slider-ui { bottom: 90px; }
+      .book { margin-top: -110px; }
       .book-card { padding: 16px; }
       .types { grid-template-columns: 1fr 1fr; gap: 8px; }
       .types button { min-height: 52px; gap: 8px; padding: 8px 28px 8px 10px; font-size: 13px; }
@@ -470,17 +457,6 @@
             <h2>Ready for<br />every guest.</h2>
             <p>Dining areas dusted, polished and set to impress.</p>
           </div></div>
-        </div>
-
-        <div class="slider-ui">
-          <div class="wrap">
-            <div class="dots" role="group" aria-label="Choose slide">
-              <button type="button" aria-label="Slide 1" aria-current="true"></button>
-              <button type="button" aria-label="Slide 2" aria-current="false"></button>
-              <button type="button" aria-label="Slide 3" aria-current="false"></button>
-              <button type="button" aria-label="Slide 4" aria-current="false"></button>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -766,24 +742,17 @@
     $$('[data-close]', drawer).forEach((el) => el.addEventListener('click', () => setMenu(false)));
     addEventListener('keydown', (e) => { if (e.key === 'Escape' && drawer.classList.contains('open')) setMenu(false); });
 
-    /* Hero slider: autoplay, dots, arrows, swipe; pauses on hover/focus */
+    /* Hero slider: autoplay, swipe; pauses on hover/focus */
     const slider = $('.slider');
     const slides = $$('.slide', slider);
-    const dots = $$('.dots button', slider);
     const DUR = 2000;
-    slider.style.setProperty('--dur', `${DUR}ms`);
     let idx = 0, timer = null;
     const show = (i) => {
       idx = (i + slides.length) % slides.length;
       slides.forEach((s, k) => { s.classList.toggle('is-active', k === idx); s.setAttribute('aria-hidden', String(k !== idx)); });
-      dots.forEach((d, k) => d.setAttribute('aria-current', String(k === idx)));
-      // restart the progress bar on the active dot
-      const d = dots[idx]; d.setAttribute('aria-current', 'false'); void d.offsetWidth; d.setAttribute('aria-current', 'true');
     };
     const play = () => { if (reduce) return; clearInterval(timer); timer = setInterval(() => show(idx + 1), DUR); slider.classList.remove('paused'); };
     const pause = () => { clearInterval(timer); slider.classList.add('paused'); };
-    dots.forEach((d, k) => d.addEventListener('click', () => { show(k); play(); }));
-    $$('.arrows button', slider).forEach((b) => b.addEventListener('click', () => { show(idx + +b.dataset.dir); play(); }));
     slider.addEventListener('mouseenter', pause);
     slider.addEventListener('mouseleave', play);
     slider.addEventListener('focusin', pause);
