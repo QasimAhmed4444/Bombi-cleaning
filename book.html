@@ -679,7 +679,7 @@
             </div>
 
             <div class="bk-group bk-when">
-              <label class="field" for="bk-date"><span>Date</span><input id="bk-date" name="date" type="date" required /></label>
+              <label class="field" for="bk-date"><span>Date</span><input id="bk-date" name="date" type="date" /></label>
               <div class="field">
                 <span id="l-bk-time">Preferred time</span>
                 <div class="bk-time" role="group" aria-labelledby="l-bk-time">
@@ -692,7 +692,7 @@
             </div>
 
             <details class="bk-group bk-addons" open>
-              <summary><span class="bk-label">Add extras <em>(optional)</em></span><span class="bk-addon-count" id="bk-addon-count">13 available</span></summary>
+              <summary><span class="bk-label">Add extras</span><span class="bk-addon-count" id="bk-addon-count">13 available</span></summary>
               <label class="bk-all"><input type="checkbox" id="bk-all" /> Select all add-ons</label>
               <p class="bk-addon-note" id="bk-addon-note" role="status" hidden></p>
               <div class="bk-addon-grid" id="bk-addons"></div>
@@ -709,24 +709,24 @@
           <fieldset class="bk-step" data-step="2" hidden>
             <legend class="sr-only">Step 2 of 2: your details</legend>
             <div class="c-row">
-              <label class="field" for="bk-name"><span>Full name <em class="req" aria-hidden="true">*</em></span><input id="bk-name" name="name" type="text" placeholder="Your full name" autocomplete="name" required aria-required="true" /></label>
+              <label class="field" for="bk-name"><span>Full name</span><input id="bk-name" name="name" type="text" placeholder="Your full name" autocomplete="name" /></label>
               <label class="field" for="bk-phone"><span>WhatsApp / Phone number <em class="req" aria-hidden="true">*</em></span><input id="bk-phone" name="phone" type="tel" placeholder="(734) 555-0123" autocomplete="tel" inputmode="tel" required aria-required="true" /></label>
             </div>
             <label class="field" for="bk-email"><span>Email address <em class="req" aria-hidden="true">*</em></span><input id="bk-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required aria-required="true" /></label>
-            <label class="field" for="bk-address"><span>Address</span><input id="bk-address" name="address" type="text" placeholder="Street address" autocomplete="street-address" required /></label>
+            <label class="field" for="bk-address"><span>Address</span><input id="bk-address" name="address" type="text" placeholder="Street address" autocomplete="street-address" /></label>
             <div class="c-row">
-              <label class="field" for="bk-apt"><span>Apartment, suite, etc. <em class="count">Optional</em></span><input id="bk-apt" name="apartment" type="text" placeholder="Apt or suite" autocomplete="address-line2" /></label>
-              <label class="field" for="bk-zip"><span>Zip code</span><input id="bk-zip" name="zip" type="text" inputmode="numeric" placeholder="48104" autocomplete="postal-code" required /></label>
+              <label class="field" for="bk-apt"><span>Apartment, suite, etc.</span><input id="bk-apt" name="apartment" type="text" placeholder="Apt or suite" autocomplete="address-line2" /></label>
+              <label class="field" for="bk-zip"><span>Zip code</span><input id="bk-zip" name="zip" type="text" inputmode="numeric" placeholder="48104" autocomplete="postal-code" /></label>
             </div>
             <div class="c-row">
               <label class="field" for="bk-entry"><span>Entry method</span>
-                <select id="bk-entry" name="entry" required>
+                <select id="bk-entry" name="entry">
                   <option value="" disabled selected>Select an entry method</option>
                   <option>Key under mat</option><option>Door code</option><option>Someone is home</option><option>Lockbox</option><option>Front desk</option><option>Others</option>
                 </select>
               </label>
               <label class="field" for="bk-pets"><span>Pets</span>
-                <select id="bk-pets" name="pets" required>
+                <select id="bk-pets" name="pets">
                   <option value="" disabled selected>Select a pet option</option>
                   <option>Dog</option><option>Cat</option><option>No pets</option><option>Other</option>
                 </select>
@@ -1016,7 +1016,7 @@
       $('#bk-err-1').hidden = true; $('#bk-err-2').hidden = true;
     }));
     $('#bk-next').addEventListener('click', () => {
-      if (!dateInput.value || dateInput.value < dateInput.min) return fail($('#bk-err-1'), [[dateInput, 'Choose a date for your clean.']]);
+      if (dateInput.value && dateInput.value < dateInput.min) return fail($('#bk-err-1'), [[dateInput, 'Choose today or a later date.']]);
       show(2);
     });
     $('#bk-back').addEventListener('click', () => show(1));
@@ -1027,16 +1027,11 @@
       e.preventDefault();
       const v = (id) => $(id).value.trim();
       const problems = [];
-      if (!v('#bk-name')) problems.push([$('#bk-name'), 'Enter your full name.']);
       const phoneDigits = v('#bk-phone').replace(/\D/g, '');
       if (!phoneDigits) problems.push([$('#bk-phone'), 'Enter your WhatsApp or phone number.']);
       else if (phoneDigits.length < 10 || phoneDigits.length > 15 || !/^\+?[\d\s().-]+$/.test(v('#bk-phone'))) problems.push([$('#bk-phone'), 'Enter a valid phone number with at least 10 digits.']);
       if (!v('#bk-email')) problems.push([$('#bk-email'), 'Enter your email address.']);
       else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('#bk-email'))) problems.push([$('#bk-email'), 'Enter a valid email address, like name@example.com.']);
-      if (!v('#bk-address')) problems.push([$('#bk-address'), 'Enter the address.']);
-      if (!/^\d{5}(-\d{4})?$/.test(v('#bk-zip'))) problems.push([$('#bk-zip'), 'Enter a 5-digit zip code.']);
-      if (!$('#bk-entry').value) problems.push([$('#bk-entry'), 'Choose an entry method.']);
-      if (!$('#bk-pets').value) problems.push([$('#bk-pets'), 'Choose a pet option.']);
       if (problems.length) return fail($('#bk-err-2'), problems);
 
       const { p, addons, total } = quote();
@@ -1048,9 +1043,9 @@
         `Date and time: ${fmtDate()}`,
         `Add-ons: ${addons.length ? addons.map(([n, pr]) => `${n} ($${pr})`).join(', ') : 'None'}`,
         total === null ? 'Total: custom quote' : `Total: ${money(total)}   Deposit (20%): ${money(total * 0.2)}   Balance: ${money(total * 0.8)}`, '',
-        `Name: ${v('#bk-name')}`, `WhatsApp / Phone: ${v('#bk-phone')}`, `Email: ${v('#bk-email')}`,
-        `Address: ${v('#bk-address')}${v('#bk-apt') ? `, ${v('#bk-apt')}` : ''}, ${v('#bk-zip')}`,
-        `Entry method: ${$('#bk-entry').value}`, `Pets: ${$('#bk-pets').value}`,
+        `Name: ${v('#bk-name') || 'Not given'}`, `WhatsApp / Phone: ${v('#bk-phone')}`, `Email: ${v('#bk-email')}`,
+        `Address: ${[v('#bk-address'), v('#bk-apt'), v('#bk-zip')].filter(Boolean).join(', ') || 'Not given'}`,
+        `Entry method: ${$('#bk-entry').value || 'Not given'}`, `Pets: ${$('#bk-pets').value || 'Not given'}`,
         `Special instructions: ${notes.value.trim() || 'None'}`,
       ];
       const subject = `Booking request: ${p.label}, ${fmtDate()}`;
