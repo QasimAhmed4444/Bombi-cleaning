@@ -436,6 +436,17 @@
     .tb-card .c-error { margin: 0; font-size: 13.5px; font-weight: 500; color: #A3402F; }
     .req { color: #A3402F; font-style: normal; margin-left: 4px; }
     .field > span .req { margin-right: auto; }   /* keep the asterisk beside its label */
+    /* ───────── Phone polish ───────── */
+    html { -webkit-text-size-adjust: 100%; }
+    a, button, label, summary { -webkit-tap-highlight-color: transparent; }
+    @media (max-width: 600px) {
+      input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 16px !important; }   /* 16px stops iPhones zooming into a field */
+      .f-grid ul { gap: 11px; }
+      .page-hero::before { background: linear-gradient(180deg, rgba(22,30,25,.6) 0%, rgba(22,30,25,.38) 100%) !important; }
+      .page-hero h1 em { color: #F3D9A8; }
+      .page-hero p { font-size: 15px; }
+      .sec-head { margin-bottom: 16px; }
+    }
   </style>
 </head>
 <body class="no-js">

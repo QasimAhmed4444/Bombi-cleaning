@@ -435,6 +435,27 @@
     .tb-card .field input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(85,99,78,.16); }
     .tb-card .field.invalid input { border-color: #B5543F; }
     .tb-card .c-error { margin: 0; font-size: 13.5px; font-weight: 500; color: #A3402F; }
+    /* ───────── Phone polish ───────── */
+    html { -webkit-text-size-adjust: 100%; }
+    a, button, label, summary { -webkit-tap-highlight-color: transparent; }
+    @media (max-width: 600px) {
+      input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 16px !important; }   /* 16px stops iPhones zooming into a field */
+      .f-grid ul { gap: 11px; }
+      .page-hero::before { background: linear-gradient(180deg, rgba(22,30,25,.6) 0%, rgba(22,30,25,.38) 100%) !important; }
+      .page-hero h1 em { color: #F3D9A8; }
+      .page-hero p { font-size: 15px; }
+      .sec-head { margin-bottom: 16px; }
+    }
+    @media (max-width: 600px) {
+      .slider { height: min(66svh, 540px); min-height: 430px; }   /* headline and booking card both on the first screen */
+      .hero-arrow { display: none; }   /* swipe the photos instead */
+      .slide .wrap { padding-top: 32px; }
+      .svc-grid > .svc { flex-basis: 86%; }   /* a peek of the next card shows the row can be swiped */
+      .svc .body p { font-size: 14px; }
+      .rv-panel { padding: 20px; }
+      .cta { min-height: 300px; }
+      .cta-foot p { font-size: 15px; }
+    }
   </style>
 </head>
 <body class="no-js">

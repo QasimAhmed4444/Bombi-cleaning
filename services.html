@@ -468,6 +468,17 @@
       .s-item { scroll-margin-top: 30px; }
       .s-actions .btn { flex: 1; }
     }
+    /* ───────── Phone polish ───────── */
+    html { -webkit-text-size-adjust: 100%; }
+    a, button, label, summary { -webkit-tap-highlight-color: transparent; }
+    @media (max-width: 600px) {
+      input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 16px !important; }   /* 16px stops iPhones zooming into a field */
+      .f-grid ul { gap: 11px; }
+      .page-hero::before { background: linear-gradient(180deg, rgba(22,30,25,.6) 0%, rgba(22,30,25,.38) 100%) !important; }
+      .page-hero h1 em { color: #F3D9A8; }
+      .page-hero p { font-size: 15px; }
+      .sec-head { margin-bottom: 16px; }
+    }
   </style>
 </head>
 <body class="no-js">

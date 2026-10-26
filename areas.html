@@ -511,6 +511,21 @@
       .pin span { font-size: 10px; padding: 2px 6px; }
       .pin i { width: 11px; height: 11px; }
     }
+    /* ───────── Phone polish ───────── */
+    html { -webkit-text-size-adjust: 100%; }
+    a, button, label, summary { -webkit-tap-highlight-color: transparent; }
+    @media (max-width: 600px) {
+      input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 16px !important; }   /* 16px stops iPhones zooming into a field */
+      .f-grid ul { gap: 11px; }
+      .page-hero::before { background: linear-gradient(180deg, rgba(22,30,25,.6) 0%, rgba(22,30,25,.38) 100%) !important; }
+      .page-hero h1 em { color: #F3D9A8; }
+      .page-hero p { font-size: 15px; }
+      .sec-head { margin-bottom: 16px; }
+    }
+    @media (max-width: 380px) {
+      .pin span { font-size: 9px; padding: 2px 5px; }
+      .pin.below-far span { right: -4px; }   /* keeps Sterling Heights inside the map on small phones */
+    }
   </style>
 </head>
 <body class="no-js">
