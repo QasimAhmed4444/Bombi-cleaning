@@ -340,31 +340,26 @@
       .fab { right: max(14px, env(safe-area-inset-right, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px) + var(--lift, 0px)); height: 44px; padding: 0 16px 0 13px; font-size: 14px; }
       .footer { padding-bottom: 64px; }   /* footer text stays clear of the floating button */
     }
-    /* ───────── Latest posts: cards rise and fade in as they scroll into view ───────── */
-    .posts-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px; margin-bottom: clamp(22px, 3vw, 40px); }
-    .posts-head h2 { max-width: 15ch; font-size: clamp(28px, 3.2vw, 44px); line-height: 1.15; letter-spacing: -0.03em; }
-    .posts-hl { display: block; color: var(--forest); }
-    .posts-all { height: 52px; padding: 0 24px; border-radius: 16px; font-weight: 600; }
-    .posts-all-mobile { display: none; }
-    .posts-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 24px; }
-    .post { display: grid; gap: 18px; align-content: start; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; }
-    .post-img { display: block; overflow: hidden; border-radius: 14px; aspect-ratio: 412 / 319; background: var(--brand-l); }
-    .post-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
-    .post:hover .post-img img { transform: scale(1.06); }
-    .post-body { display: grid; gap: 8px; }
-    .post-meta { font-size: 14px; color: var(--ink-3); }
-    .post h3 { font-size: clamp(19px, 1.8vw, 24px); font-weight: 600; line-height: 1.35; letter-spacing: -0.015em; }
-    .post h3 a { color: var(--ink); transition: color .2s; }
-    .post h3 a:hover { color: var(--forest); }
-    .js .rise { opacity: 0; transform: translate3d(0, 14%, 0); transition: opacity .9s var(--ease) var(--d, 0s), transform .9s var(--ease) var(--d, 0s); }
-    .js .rise.is-in { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) { .js .rise { opacity: 1; transform: none; transition: none; } .post-img img { transition: none; } }
+    /* ───────── One click away: a pinned stage where photo cards spread out on scroll ───────── */
+    .spread { position: relative; height: 260vh; margin-top: clamp(22px, 2.6vw, 34px); }
+    .spread-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+    .sp-card { position: absolute; left: 50%; top: 50%; width: var(--w); aspect-ratio: 1; margin: 0; border-radius: 18px; overflow: visible; will-change: transform; transform: translate(-50%, -50%); }
+    .sp-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; box-shadow: 0 18px 40px -22px rgba(20,28,23,.45); }
+    .sp-card figcaption { position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%); white-space: nowrap; padding: 7px 14px; border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 600; box-shadow: 0 6px 18px -8px rgba(20,28,23,.35); opacity: var(--lbl, 0); pointer-events: none; }
+    .spread-copy { position: absolute; inset: 0; z-index: 20; display: grid; place-content: center; justify-items: center; gap: 22px; padding: 0 max(20px, 6vw); text-align: center; opacity: var(--cp, 0); transform: translateY(calc((1 - var(--cp, 0)) * 30px)); pointer-events: none; }
+    .spread-copy.on { pointer-events: auto; }
+    .spread-copy h2 { max-width: 13ch; font-size: clamp(36px, 5.6vw, 76px); font-weight: 600; line-height: 1.04; letter-spacing: -0.04em; color: var(--ink); }
+    .spread-copy h2 span { color: var(--forest); }
+    .spread-copy p { margin: 0; max-width: 46ch; font-size: clamp(15px, 1.3vw, 18px); line-height: 1.6; color: var(--ink-2); }
+    .spread-btn { height: 56px; padding: 0 30px; border-radius: 16px; background: var(--forest); color: #fff; font-size: 16px; font-weight: 700; }
+    .spread-btn:hover { background: #17301F; }
     @media (max-width: 760px) {
-      .posts-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-      .posts-all { display: none; }
-      .posts-all-mobile { display: inline-flex; width: 100%; height: 50px; margin-top: 18px; border-radius: 14px; }
-      .post { padding: 14px; gap: 14px; }
+      .spread { height: 220vh; }
+      .sp-card figcaption { font-size: 11px; padding: 5px 10px; bottom: -10px; }
+      .spread-copy { gap: 16px; }
     }
+    /* without motion: the call to action is simply shown with the photos around it */
+    @media (prefers-reduced-motion: reduce) { .spread { height: auto; } .spread-stage { position: relative; height: 100svh; min-height: 560px; } }
 
     /* ───────── Footer: full-width warm cream band ───────── */
     .footer { margin-top: clamp(20px, 2.4vw, 32px); background: #FAF7F1; color: var(--ink); border-top: 1px solid var(--line); }
@@ -801,33 +796,23 @@
       </div></div>
     </section>
 
-    <!-- ═════════ Latest posts (cleaning tips) ═════════ -->
-    <section class="block block-last" id="posts" aria-labelledby="posts-title">
-      <div class="wrap"><div class="box posts">
-        <div class="posts-head rise">
-          <h2 id="posts-title">Stay updated with our <span class="posts-hl">latest posts</span></h2>
-          <a class="btn btn-forest posts-all" href="services.html">View all services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <!-- ═════════ One click away: photo cards spread out as you scroll, then the call to action appears ═════════ -->
+    <section class="spread block-last" id="get-started" aria-labelledby="spread-title">
+      <div class="spread-stage">
+        <figure class="sp-card" data-x="9" data-y="-21" data-s="1.9" data-z="8" style="--w:34vmin"><img src="assets/hero-kitchen-900.webp" alt="" loading="lazy" decoding="async" /><figcaption>Kitchen deep clean</figcaption></figure>
+        <figure class="sp-card" data-x="-17" data-y="-31" data-s="1.6" data-z="3" style="--w:23vmin"><img src="assets/residential-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Residential Cleaning</figcaption></figure>
+        <figure class="sp-card" data-x="-31" data-y="-6" data-s="1.6" data-z="4" style="--w:26vmin"><img src="assets/team-cleaners.webp" alt="" loading="lazy" decoding="async" /><figcaption>Our cleaning team</figcaption></figure>
+        <figure class="sp-card" data-x="-33" data-y="24" data-s="1.5" data-z="5" style="--w:22vmin"><img src="assets/short-term-rental-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Short-Term Rentals</figcaption></figure>
+        <figure class="sp-card" data-x="-13" data-y="29" data-s="1.5" data-z="6" style="--w:20vmin"><img src="assets/move-in-out-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Move-In / Move-Out</figcaption></figure>
+        <figure class="sp-card" data-x="8" data-y="27" data-s="1.5" data-z="7" style="--w:22vmin"><img src="assets/shared-space-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Shared Spaces</figcaption></figure>
+        <figure class="sp-card" data-x="27" data-y="27" data-s="1.5" data-z="5" style="--w:20vmin"><img src="assets/office-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Office Cleaning</figcaption></figure>
+        <figure class="sp-card" data-x="32" data-y="-6" data-s="1.6" data-z="4" style="--w:24vmin"><img src="assets/after-construction-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>After-Construction</figcaption></figure>
+        <div class="spread-copy">
+          <h2 id="spread-title">Your Clean Happy <span>Space Is Just</span> One Click Away</h2>
+          <p>Let Bambi Cleaning turn your home or office into a spotless, calm place. Book your service in just a few clicks, fast and easy.</p>
+          <a class="btn spread-btn" href="book.html">Get my price <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
-        <div class="posts-grid">
-          <article class="post rise" style="--d:0s">
-            <a class="post-img" href="services.html#residential-cleaning" tabindex="-1" aria-hidden="true"><img src="assets/residential-760.webp" alt="" width="760" height="507" loading="lazy" decoding="async" /></a>
-            <div class="post-body"><span class="post-meta">Home care</span><h3><a href="services.html#residential-cleaning">Deep cleaning tips for busy homes</a></h3></div>
-          </article>
-          <article class="post rise" style="--d:.12s">
-            <a class="post-img" href="services.html#short-term-rental-cleaning" tabindex="-1" aria-hidden="true"><img src="assets/short-term-rental-760.webp" alt="" width="760" height="507" loading="lazy" decoding="async" /></a>
-            <div class="post-body"><span class="post-meta">Rentals</span><h3><a href="services.html#short-term-rental-cleaning">How we get a rental guest-ready between bookings</a></h3></div>
-          </article>
-          <article class="post rise" style="--d:.24s">
-            <a class="post-img" href="services.html#move-in-move-out-cleaning" tabindex="-1" aria-hidden="true"><img src="assets/move-in-out-760.webp" alt="" width="760" height="507" loading="lazy" decoding="async" /></a>
-            <div class="post-body"><span class="post-meta">Moving</span><h3><a href="services.html#move-in-move-out-cleaning">Your move-out cleaning checklist for a full deposit</a></h3></div>
-          </article>
-          <article class="post rise" style="--d:.36s">
-            <a class="post-img" href="services.html#office-cleaning" tabindex="-1" aria-hidden="true"><img src="assets/office-760.webp" alt="" width="760" height="507" loading="lazy" decoding="async" /></a>
-            <div class="post-body"><span class="post-meta">Workplaces</span><h3><a href="services.html#office-cleaning">Keeping a shared office fresh all week</a></h3></div>
-          </article>
-        </div>
-        <a class="btn btn-forest posts-all-mobile" href="services.html">View all services</a>
-      </div></div>
+      </div>
     </section>
 
   </main>
@@ -1124,11 +1109,42 @@
       addEventListener('scroll', ask, { passive: true }); addEventListener('resize', ask); lift();
     }
 
-    /* Latest posts: heading and cards rise into place, one after another, as they scroll into view */
-    if (!reduce && 'IntersectionObserver' in window) {
-      const riser = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); riser.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
-      $$('.rise').forEach((el) => riser.observe(el));
-    } else $$('.rise').forEach((el) => el.classList.add('is-in'));
+    /* One click away: scroll drives the cards from a zoomed stack, out to a collage, then to the edges as the text appears */
+    const spread = $('.spread');
+    if (spread) {
+      const cards = $$('.sp-card', spread), copy = $('.spread-copy', spread);
+      const clamp01 = (v) => Math.min(1, Math.max(0, v));
+      const ease = (t) => 1 - Math.pow(1 - t, 3);
+      const paint = (p) => {
+        const a = ease(clamp01(p / 0.45));             // stack -> collage
+        const b = ease(clamp01((p - 0.5) / 0.35));     // collage -> edges
+        const lbl = clamp01((p - 0.3) / 0.12) * (1 - clamp01((p - 0.5) / 0.12));
+        const narrow = innerWidth < 760;
+        cards.forEach((c) => {
+          const x = +c.dataset.x * (narrow ? 1.25 : 1), y = +c.dataset.y, s0 = +c.dataset.s;
+          const k = a * (1 + b * 0.75);                  // how far out the card has travelled
+          const scale = s0 + (1 - s0) * a - b * 0.18;
+          c.style.transform = `translate(calc(-50% + ${(x * k).toFixed(2)}vw), calc(-50% + ${(y * k).toFixed(2)}vh)) scale(${scale.toFixed(3)})`;
+          c.style.zIndex = a < 0.5 ? 10 + +c.dataset.z : c.dataset.z;
+          c.style.setProperty('--lbl', lbl.toFixed(2));
+        });
+        const cp = clamp01((p - 0.62) / 0.22);
+        copy.style.setProperty('--cp', cp.toFixed(3));
+        copy.classList.toggle('on', cp > 0.6);
+      };
+      if (reduce) paint(1);
+      else {
+        let ticking = false;
+        const onScroll = () => {
+          ticking = false;
+          const r = spread.getBoundingClientRect();
+          paint(clamp01(-r.top / Math.max(1, r.height - innerHeight)));
+        };
+        addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+        addEventListener('resize', onScroll);
+        onScroll();
+      }
+    }
 
     /* Subtle reveal on scroll */
     if (!reduce && 'IntersectionObserver' in window) {
