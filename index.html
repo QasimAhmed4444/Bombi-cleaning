@@ -133,11 +133,6 @@ transition: background-color .2s, border-color .2s, color .2s, box-shadow .2s;
 .slider.first .slide-copy > * { transition: none !important; }
 .slide h1, .slide h2 { font-family: var(--sans); font-weight: 700; font-size: clamp(32px, 4.2vw, 54px); line-height: 1.06; letter-spacing: -0.03em; color: #FBF8F2; text-shadow: 0 2px 18px rgba(14,20,16,.35); }
 .slide p { margin: 0; font-size: clamp(16px, 1.45vw, 19px); color: #FBF8F2; max-width: 36ch; text-shadow: 0 1px 10px rgba(14,20,16,.45); }
-.hero-arrow { position: absolute; top: 50%; z-index: 2; width: 48px; height: 48px; margin-top: -24px; border-radius: 50%; border: 0; background: rgba(255,255,255,.88); color: var(--ink); display: grid; place-items: center; cursor: pointer; box-shadow: 0 4px 16px rgba(14,20,16,.18); transition: background-color .2s, transform .2s; }
-.hero-arrow:hover { background: #fff; transform: scale(1.06); }
-.hero-arrow svg { width: 20px; height: 20px; }
-.hero-prev { left: clamp(10px, 1.6vw, 24px); }
-.hero-next { right: clamp(10px, 1.6vw, 24px); }
 .book { position: relative; z-index: 6; margin: -38px 0 clamp(6px, 1vw, 12px); }
 .book-bar { display: flex; align-items: center; gap: 0; min-height: 76px; padding: 8px 8px 8px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 16px 36px -16px rgba(24,33,28,.28), 0 2px 6px rgba(24,33,28,.05); }
 .book-bar > * + * { border-left: 1px solid var(--line); }
@@ -350,7 +345,6 @@ transition: background-color .2s, border-color .2s, color .2s, box-shadow .2s;
 .slider { min-height: 500px; }
 .slide::after { background: linear-gradient(180deg, rgba(22,30,25,.5) 0%, rgba(22,30,25,.26) 34%, rgba(22,30,25,0) 60%); }
 .slide .wrap { padding-top: 40px; }
-.hero-arrow { top: auto; bottom: 84px; width: 40px; height: 40px; margin-top: 0; }
 .steps { grid-template-columns: 1fr; }
 .f-grid { grid-template-columns: 1fr 1fr; }
 .f-grid > :first-child { grid-column: 1 / -1; }
@@ -414,7 +408,6 @@ input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 
 }
 @media (max-width: 600px) {
 .slider { height: min(66svh, 540px); min-height: 430px; }
-.hero-arrow { display: none; }
 .slide .wrap { padding-top: 32px; }
 .svc-grid > .svc { flex-basis: 86%; }
 .svc .body p { font-size: 14px; }
@@ -542,8 +535,6 @@ input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 
 <p>Dining areas dusted, polished and set to impress.</p>
 </div></div>
 </div>
-<button type="button" class="hero-arrow hero-prev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
-<button type="button" class="hero-arrow hero-next" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
 </div>
 </section>
 <div class="book">
@@ -849,8 +840,6 @@ slides.forEach((s, k) => { s.classList.toggle('is-active', k === idx); s.setAttr
 };
 const play = () => { if (reduce) return; clearInterval(timer); timer = setInterval(() => show(idx + 1), DUR); slider.classList.remove('paused'); };
 const pause = () => { clearInterval(timer); slider.classList.add('paused'); };
-$('.hero-prev', slider).addEventListener('click', () => { show(idx - 1); play(); });
-$('.hero-next', slider).addEventListener('click', () => { show(idx + 1); play(); });
 // the first photo loads straight away; the other slides fetch theirs once the page has loaded
 const loadRest = () => $$('img[data-src]', slider).forEach((im) => { im.srcset = im.dataset.srcset; im.src = im.dataset.src; im.removeAttribute('data-src'); });
 if (document.readyState === 'complete') loadRest(); else addEventListener('load', loadRest);
