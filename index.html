@@ -345,17 +345,17 @@
     .spread-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
     .sp-card { position: absolute; left: 50%; top: 50%; width: var(--w); aspect-ratio: 1; margin: 0; border-radius: 18px; overflow: visible; will-change: transform; transform: translate(-50%, -50%); }
     .sp-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; box-shadow: 0 18px 40px -22px rgba(20,28,23,.45); }
-    .sp-card figcaption { position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%); white-space: nowrap; padding: 7px 14px; border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 600; box-shadow: 0 6px 18px -8px rgba(20,28,23,.35); opacity: var(--lbl, 0); pointer-events: none; }
+    .sp-card figcaption { position: absolute; left: 50%; top: 100%; transform: translate(-50%, -50%) scale(var(--ls, 1)); transform-origin: 50% 0; white-space: nowrap; padding: 7px 14px; border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 600; box-shadow: 0 6px 18px -8px rgba(20,28,23,.35); opacity: var(--lbl, 0); pointer-events: none; }
     .spread-copy { position: absolute; inset: 0; z-index: 20; display: grid; place-content: center; justify-items: center; gap: 22px; padding: 0 max(20px, 6vw); text-align: center; opacity: var(--cp, 0); transform: translateY(calc((1 - var(--cp, 0)) * 30px)); pointer-events: none; }
     .spread-copy.on { pointer-events: auto; }
-    .spread-copy h2 { max-width: 13ch; font-size: clamp(36px, 5.6vw, 76px); font-weight: 600; line-height: 1.04; letter-spacing: -0.04em; color: var(--ink); }
+    .spread-copy h2 { max-width: 13ch; font-size: clamp(32px, 4.4vw, 62px); font-weight: 600; line-height: 1.04; letter-spacing: -0.04em; color: var(--ink); }
     .spread-copy h2 span { color: var(--forest); }
     .spread-copy p { margin: 0; max-width: 46ch; font-size: clamp(15px, 1.3vw, 18px); line-height: 1.6; color: var(--ink-2); }
     .spread-btn { height: 56px; padding: 0 30px; border-radius: 16px; background: var(--forest); color: #fff; font-size: 16px; font-weight: 700; }
     .spread-btn:hover { background: #17301F; }
     @media (max-width: 760px) {
       .spread { height: 220vh; }
-      .sp-card figcaption { font-size: 11px; padding: 5px 10px; bottom: -10px; }
+      .sp-card figcaption { font-size: 10.5px; padding: 4px 8px; white-space: normal; width: max-content; max-width: 92px; text-align: center; line-height: 1.2; }
       .spread-copy { gap: 16px; }
     }
     /* without motion: the call to action is simply shown with the photos around it */
@@ -799,14 +799,14 @@
     <!-- ═════════ One click away: photo cards spread out as you scroll, then the call to action appears ═════════ -->
     <section class="spread block-last" id="get-started" aria-labelledby="spread-title">
       <div class="spread-stage">
-        <figure class="sp-card" data-x="9" data-y="-21" data-s="1.9" data-z="8" style="--w:34vmin"><img src="assets/hero-kitchen-900.webp" alt="" loading="lazy" decoding="async" /><figcaption>Kitchen deep clean</figcaption></figure>
-        <figure class="sp-card" data-x="-17" data-y="-31" data-s="1.6" data-z="3" style="--w:23vmin"><img src="assets/residential-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Residential Cleaning</figcaption></figure>
-        <figure class="sp-card" data-x="-31" data-y="-6" data-s="1.6" data-z="4" style="--w:26vmin"><img src="assets/team-cleaners.webp" alt="" loading="lazy" decoding="async" /><figcaption>Our cleaning team</figcaption></figure>
-        <figure class="sp-card" data-x="-33" data-y="24" data-s="1.5" data-z="5" style="--w:22vmin"><img src="assets/short-term-rental-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Short-Term Rentals</figcaption></figure>
-        <figure class="sp-card" data-x="-13" data-y="29" data-s="1.5" data-z="6" style="--w:20vmin"><img src="assets/move-in-out-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Move-In / Move-Out</figcaption></figure>
-        <figure class="sp-card" data-x="8" data-y="27" data-s="1.5" data-z="7" style="--w:22vmin"><img src="assets/shared-space-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Shared Spaces</figcaption></figure>
-        <figure class="sp-card" data-x="27" data-y="27" data-s="1.5" data-z="5" style="--w:20vmin"><img src="assets/office-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Office Cleaning</figcaption></figure>
-        <figure class="sp-card" data-x="32" data-y="-6" data-s="1.6" data-z="4" style="--w:24vmin"><img src="assets/after-construction-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>After-Construction</figcaption></figure>
+        <figure class="sp-card" data-x="9" data-y="-21" data-s="1.9" data-z="8" data-fx="38" data-fy="-34" data-mx="36" data-my="-33" style="--w:34vmin"><img src="assets/hero-kitchen-900.webp" alt="" loading="lazy" decoding="async" /><figcaption>Kitchen deep clean</figcaption></figure>
+        <figure class="sp-card" data-x="-17" data-y="-31" data-s="1.6" data-z="3" data-fx="-38" data-fy="-34" data-mx="-36" data-my="-33" style="--w:23vmin"><img src="assets/residential-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Residential Cleaning</figcaption></figure>
+        <figure class="sp-card" data-x="-31" data-y="-6" data-s="1.6" data-z="4" data-fx="-38" data-fy="-12" data-mx="-12" data-my="-33" style="--w:26vmin"><img src="assets/team-cleaners.webp" alt="" loading="lazy" decoding="async" /><figcaption>Our cleaning team</figcaption></figure>
+        <figure class="sp-card" data-x="-33" data-y="24" data-s="1.5" data-z="5" data-fx="-38" data-fy="10" data-mx="12" data-my="-33" style="--w:22vmin"><img src="assets/short-term-rental-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Short-Term Rentals</figcaption></figure>
+        <figure class="sp-card" data-x="-13" data-y="29" data-s="1.5" data-z="6" data-fx="-38" data-fy="30" data-mx="-36" data-my="34" style="--w:20vmin"><img src="assets/move-in-out-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Move-In / Move-Out</figcaption></figure>
+        <figure class="sp-card" data-x="8" data-y="27" data-s="1.5" data-z="7" data-fx="38" data-fy="30" data-mx="-12" data-my="34" style="--w:22vmin"><img src="assets/shared-space-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Shared Spaces</figcaption></figure>
+        <figure class="sp-card" data-x="27" data-y="27" data-s="1.5" data-z="5" data-fx="38" data-fy="10" data-mx="12" data-my="34" style="--w:20vmin"><img src="assets/office-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>Office Cleaning</figcaption></figure>
+        <figure class="sp-card" data-x="32" data-y="-6" data-s="1.6" data-z="4" data-fx="38" data-fy="-12" data-mx="36" data-my="34" style="--w:24vmin"><img src="assets/after-construction-760.webp" alt="" loading="lazy" decoding="async" /><figcaption>After-Construction</figcaption></figure>
         <div class="spread-copy">
           <h2 id="spread-title">Your Clean Happy <span>Space Is Just</span> One Click Away</h2>
           <p>Let Bambi Cleaning turn your home or office into a spotless, calm place. Book your service in just a few clicks, fast and easy.</p>
@@ -1117,14 +1117,17 @@
       const ease = (t) => 1 - Math.pow(1 - t, 3);
       const paint = (p) => {
         const a = ease(clamp01(p / 0.45));             // stack -> collage
-        const b = ease(clamp01((p - 0.5) / 0.35));     // collage -> edges
-        const lbl = clamp01((p - 0.3) / 0.12) * (1 - clamp01((p - 0.5) / 0.12));
+        const b = ease(clamp01((p - 0.5) / 0.35));     // collage -> tidy columns around the text
+        const lbl = clamp01((p - 0.3) / 0.12);         // names stay on once they appear
         const narrow = innerWidth < 760;
         cards.forEach((c) => {
           const x = +c.dataset.x * (narrow ? 1.25 : 1), y = +c.dataset.y, s0 = +c.dataset.s;
-          const k = a * (1 + b * 0.75);                  // how far out the card has travelled
-          const scale = s0 + (1 - s0) * a - b * 0.18;
-          c.style.transform = `translate(calc(-50% + ${(x * k).toFixed(2)}vw), calc(-50% + ${(y * k).toFixed(2)}vh)) scale(${scale.toFixed(3)})`;
+          const fx = +(narrow ? c.dataset.mx : c.dataset.fx), fy = +(narrow ? c.dataset.my : c.dataset.fy);
+          const w = parseFloat(c.style.getPropertyValue('--w')) || 20, fs = (narrow ? 18 : 14) / w;   // every card ends the same size
+          const cx = x * a + (fx - x) * b, cy = y * a + (fy - y) * b;
+          const scale = (s0 + (1 - s0) * a) * (1 - b) + fs * b;
+          c.style.transform = `translate(calc(-50% + ${cx.toFixed(2)}vw), calc(-50% + ${cy.toFixed(2)}vh)) scale(${scale.toFixed(3)})`;
+          c.style.setProperty('--ls', (1 / scale).toFixed(3));   // keeps the name label the same size at any zoom
           c.style.zIndex = a < 0.5 ? 10 + +c.dataset.z : c.dataset.z;
           c.style.setProperty('--lbl', lbl.toFixed(2));
         });
