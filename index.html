@@ -340,6 +340,32 @@
       .fab { right: max(14px, env(safe-area-inset-right, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px) + var(--lift, 0px)); height: 44px; padding: 0 16px 0 13px; font-size: 14px; }
       .footer { padding-bottom: 64px; }   /* footer text stays clear of the floating button */
     }
+    /* ───────── Latest posts: cards rise and fade in as they scroll into view ───────── */
+    .posts-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px; margin-bottom: clamp(22px, 3vw, 40px); }
+    .posts-head h2 { max-width: 15ch; font-size: clamp(28px, 3.2vw, 44px); line-height: 1.15; letter-spacing: -0.03em; }
+    .posts-hl { display: block; color: var(--forest); }
+    .posts-all { height: 52px; padding: 0 24px; border-radius: 16px; font-weight: 600; }
+    .posts-all-mobile { display: none; }
+    .posts-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 24px; }
+    .post { display: grid; gap: 18px; align-content: start; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; }
+    .post-img { display: block; overflow: hidden; border-radius: 14px; aspect-ratio: 412 / 319; background: var(--brand-l); }
+    .post-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+    .post:hover .post-img img { transform: scale(1.06); }
+    .post-body { display: grid; gap: 8px; }
+    .post-meta { font-size: 14px; color: var(--ink-3); }
+    .post h3 { font-size: clamp(19px, 1.8vw, 24px); font-weight: 600; line-height: 1.35; letter-spacing: -0.015em; }
+    .post h3 a { color: var(--ink); transition: color .2s; }
+    .post h3 a:hover { color: var(--forest); }
+    .js .rise { opacity: 0; transform: translate3d(0, 14%, 0); transition: opacity .9s var(--ease) var(--d, 0s), transform .9s var(--ease) var(--d, 0s); }
+    .js .rise.is-in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .js .rise { opacity: 1; transform: none; transition: none; } .post-img img { transition: none; } }
+    @media (max-width: 760px) {
+      .posts-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+      .posts-all { display: none; }
+      .posts-all-mobile { display: inline-flex; width: 100%; height: 50px; margin-top: 18px; border-radius: 14px; }
+      .post { padding: 14px; gap: 14px; }
+    }
+
     /* ───────── Footer: full-width warm cream band ───────── */
     .footer { margin-top: clamp(20px, 2.4vw, 32px); background: #FAF7F1; color: var(--ink); border-top: 1px solid var(--line); }
     .foot-box { padding: clamp(36px, 4vw, 56px) 0 20px; }
@@ -775,20 +801,33 @@
       </div></div>
     </section>
 
-    <!-- ═════════ Call to action ═════════ -->
-    <section class="block block-last" aria-labelledby="cta-title">
-      <div class="wrap">
-        <div class="cta">
-          <img class="cta-img" src="assets/office-1400.webp" srcset="assets/office-760.webp 760w, assets/office-1400.webp 1400w" sizes="(max-width: 1240px) 100vw, 1200px" alt="" loading="lazy" decoding="async" />
-          <div class="cta-copy">
-            <h2 id="cta-title" class="cta-anim">Ready for a <em>cleaner</em> week?</h2>
-            <div class="cta-foot cta-anim">
-              <a class="btn btn-gold" href="book.html">Get my price <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-              <p>Homes, rentals and workplaces across Southeast Michigan. We handle the mess, so you can stress less.</p>
-            </div>
-          </div>
+    <!-- ═════════ Latest posts (cleaning tips) ═════════ -->
+    <section class="block block-last" id="posts" aria-labelledby="posts-title">
+      <div class="wrap"><div class="box posts">
+        <div class="posts-head rise">
+          <h2 id="posts-title">Stay updated with our <span class="posts-hl">latest posts</span></h2>
+          <a class="btn btn-forest posts-all" href="services.html">View all services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
-      </div>
+        <div class="posts-grid">
+          <article class="post rise" style="--d:0s">
+            <a class="post-img" href="services.html#residential-cleaning" tabindex="-1" aria-hidden="true"><img src="assets/residential-760.webp" alt="" width="760" height="507" loading="lazy" decoding="async" /></a>
+            <div class="post-body"><span class="post-meta">Home care</span><h3><a href="services.html#residential-cleaning">Deep cleaning tips for busy homes</a></h3></div>
+          </article>
+          <article class="post rise" style="--d:.12s">
+            <a class="post-img" href="services.html#short-term-rental-cleaning" tabindex="-1" aria-hidden="true"><img src="assets/short-term-rental-760.webp" alt="" width="760" height="507" loading="lazy" decoding="async" /></a>
+            <div class="post-body"><span class="post-meta">Rentals</span><h3><a href="services.html#short-term-rental-cleaning">How we get a rental guest-ready between bookings</a></h3></div>
+          </article>
+          <article class="post rise" style="--d:.24s">
+            <a class="post-img" href="services.html#move-in-move-out-cleaning" tabindex="-1" aria-hidden="true"><img src="assets/move-in-out-760.webp" alt="" width="760" height="507" loading="lazy" decoding="async" /></a>
+            <div class="post-body"><span class="post-meta">Moving</span><h3><a href="services.html#move-in-move-out-cleaning">Your move-out cleaning checklist for a full deposit</a></h3></div>
+          </article>
+          <article class="post rise" style="--d:.36s">
+            <a class="post-img" href="services.html#office-cleaning" tabindex="-1" aria-hidden="true"><img src="assets/office-760.webp" alt="" width="760" height="507" loading="lazy" decoding="async" /></a>
+            <div class="post-body"><span class="post-meta">Workplaces</span><h3><a href="services.html#office-cleaning">Keeping a shared office fresh all week</a></h3></div>
+          </article>
+        </div>
+        <a class="btn btn-forest posts-all-mobile" href="services.html">View all services</a>
+      </div></div>
     </section>
 
   </main>
@@ -1084,6 +1123,12 @@
       const ask = () => lift();   // a few rect reads per scroll, cheap enough to run directly
       addEventListener('scroll', ask, { passive: true }); addEventListener('resize', ask); lift();
     }
+
+    /* Latest posts: heading and cards rise into place, one after another, as they scroll into view */
+    if (!reduce && 'IntersectionObserver' in window) {
+      const riser = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); riser.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
+      $$('.rise').forEach((el) => riser.observe(el));
+    } else $$('.rise').forEach((el) => el.classList.add('is-in'));
 
     /* Subtle reveal on scroll */
     if (!reduce && 'IntersectionObserver' in window) {
