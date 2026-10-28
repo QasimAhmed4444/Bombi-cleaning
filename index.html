@@ -291,15 +291,7 @@ transition: background-color .2s, border-color .2s, color .2s, box-shadow .2s;
 .track:hover { border-color: var(--brand); background: #DCE3D6; }
 .tk-ic { width: 30px; height: 30px; flex: none; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--forest); box-shadow: 0 1px 2px rgba(24,33,28,.08); }
 .tk-ic svg { width: 16px; height: 16px; }
-.fab { position: fixed; z-index: 45; right: max(20px, env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 0 20px 0 16px; border-radius: 999px; background: var(--forest); color: #fff; font-size: 15px; font-weight: 700; box-shadow: 0 14px 30px -12px rgba(47,93,70,.6), 0 2px 6px rgba(20,28,23,.14); transition: transform .2s var(--ease), background-color .2s; }
-.fab { bottom: calc(20px + env(safe-area-inset-bottom, 0px) + var(--lift, 0px)); animation: fab-float 3s ease-in-out infinite; transition: bottom .35s var(--ease), background-color .2s; }
-.fab:hover { background: #27503C; animation-play-state: paused; }
-@keyframes fab-float { 0%, 100% { transform: translateY(0); box-shadow: 0 14px 30px -12px rgba(47,93,70,.6), 0 2px 6px rgba(20,28,23,.14); } 50% { transform: translateY(-5px); box-shadow: 0 20px 34px -14px rgba(47,93,70,.5), 0 2px 6px rgba(20,28,23,.1); } }
-@media (prefers-reduced-motion: reduce) { .fab { animation: none; } }
-.fab svg { width: 18px; height: 18px; }
 @media (max-width: 600px) {
-.fab { right: max(14px, env(safe-area-inset-right, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px) + var(--lift, 0px)); height: 44px; padding: 0 16px 0 13px; font-size: 14px; }
-.footer { padding-bottom: 64px; }
 }
 .spread { position: relative; height: 230vh; margin-top: clamp(22px, 2.6vw, 34px); }
 .spread-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
@@ -465,7 +457,12 @@ input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 
 .slider { height: calc(min(66svh, 540px) + 68px); min-height: 498px; }
 .slide .wrap { padding-top: 100px; }
 }
-.spread-stage { background: url('assets/cleaning-motif.png') repeat center / 1134px auto; }</style>
+.spread-stage { background: url('assets/cleaning-motif.png') repeat center / 1134px auto; }
+.nav-pill .nav-book { height: 42px; padding: 0 22px; border-radius: 999px; background: #fff; color: var(--forest); font-size: 14.5px; font-weight: 700; display: inline-flex; align-items: center; transition: background-color .2s; }
+.nav-pill .nav-book:hover, .nav-pill .nav-book.active { background: var(--brand-l); }
+@media (max-width: 1260px) { .nav-pill { gap: 8px; } .nav-pill .nav-book { background: var(--forest); color: #fff; } .nav-pill .nav-book:hover, .nav-pill .nav-book.active { background: #27503C; } }
+@media (max-width: 600px) { .nav-pill { gap: 6px; } .nav-pill .nav-book { height: 40px; padding: 0 14px; font-size: 13.5px; } }
+@media (max-width: 420px) { .nav-pill .track { display: none; } }</style>
 </head>
 <body class="on-photo no-js">
 <script>document.body.classList.replace('no-js', 'js'); if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.body.classList.add('reduce');</script>
@@ -480,6 +477,7 @@ input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 
 <a href="areas.html">Areas</a>
 <a href="contact.html">Contact</a>
 </nav>
+<a class="nav-book" href="book.html">Book Now</a>
 <a class="track" href="#track" data-track>Track Booking</a>
 </div>
 <div class="head-actions">
@@ -747,7 +745,6 @@ input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 
 </div>
 </section>
 </main>
-<a class="fab" href="book.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="m9.5 15 2 2 3.5-3.5"/></svg>Book Now</a>
 <footer class="footer">
 <div class="wrap"><div class="foot-box">
 <div class="f-grid">
@@ -1004,20 +1001,6 @@ if (!t.children.length) return;
 [...t.children].forEach((c) => { const copy = c.cloneNode(true); copy.setAttribute('aria-hidden', 'true'); t.appendChild(copy); });
 t.style.setProperty('--rv-dur', `${Math.max(30, t.children.length * 6)}s`);   // about the same speed in every column
 });
-}
-/* Floating Book Now rises above the booking bar when the two would overlap */
-const fab = $('.fab'), bar = $('.book-bar');
-if (fab && bar) {
-let raf = 0;
-const lift = () => {
-raf = 0;
-const b = bar.getBoundingClientRect(), gap = parseFloat(getComputedStyle(fab).right) || 20, h = fab.offsetHeight, rest = innerHeight - (innerWidth <= 600 ? 14 : 20);
-const overlapX = b.right > innerWidth - gap - fab.offsetWidth - 8;
-const overlapY = b.bottom > rest - h - 8 && b.top < rest;
-fab.style.setProperty('--lift', overlapX && overlapY ? Math.round(rest - b.top + 14) + 'px' : '0px');
-};
-const ask = () => lift();   // a few rect reads per scroll, cheap enough to run directly
-addEventListener('scroll', ask, { passive: true }); addEventListener('resize', ask); lift();
 }
 /* One click away: scroll drives the cards from a zoomed stack, out to a collage, then to the edges as the text appears */
 const spread = $('.spread');
