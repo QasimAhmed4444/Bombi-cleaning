@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Contact Us — Bambi Cleaning</title>
 <meta name="description" content="Contact Bambi Cleaning in Ann Arbor: call (734) 360-6176, email admin@bambicleaning.com, or send us a message." />
-<meta name="theme-color" content="#1F3D2B" />
+<meta name="theme-color" content="#2F5D46" />
 <link rel="icon" href="favicon.ico" sizes="32x32 48x48" />
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
@@ -28,7 +28,7 @@
 --gold-l: #F4EBDC;
 --line: #E2DED5;
 --ink-btn: #1D2125;
---forest: #1F3D2B;
+--forest: #2F5D46;
 --serif: var(--sans);
 --sans: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 --r: 14px;
@@ -76,7 +76,7 @@ transition: background-color .2s, border-color .2s, color .2s, box-shadow .2s;
 .btn svg { width: 17px; height: 17px; flex: none; }
 .btn-gold { background: var(--gold); color: var(--ink); }
 .btn-gold:hover { background: var(--gold-d); }
-.btn-dark { background: var(--brand-d); color: #fff; }
+.btn-dark { background: var(--forest); color: #fff; }
 .btn-dark:hover { background: var(--ink); }
 .btn-line { border-color: var(--line); background: var(--surface); color: var(--ink); }
 .btn-line:hover { border-color: var(--ink); }
@@ -102,7 +102,7 @@ transition: background-color .2s, border-color .2s, color .2s, box-shadow .2s;
 .btn-ink { background: var(--ink-btn); color: #fff; }
 .btn-ink:hover { background: #000; }
 .btn-forest { background: var(--forest); color: #fff; }
-.btn-forest:hover { background: #17301F; }
+.btn-forest:hover { background: #27503C; }
 .head-actions { grid-column: 3; justify-self: end; display: flex; align-items: center; gap: 12px; }
 .burger { display: none; width: 46px; height: 46px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface); cursor: pointer; place-items: center; }
 .burger svg { width: 20px; height: 20px; }
@@ -234,10 +234,10 @@ transition: background-color .2s, border-color .2s, color .2s, box-shadow .2s;
 .track:hover { border-color: var(--brand); background: #DCE3D6; }
 .tk-ic { width: 30px; height: 30px; flex: none; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--forest); box-shadow: 0 1px 2px rgba(24,33,28,.08); }
 .tk-ic svg { width: 16px; height: 16px; }
-.fab { position: fixed; z-index: 45; right: max(20px, env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 0 20px 0 16px; border-radius: 999px; background: var(--forest); color: #fff; font-size: 15px; font-weight: 700; box-shadow: 0 14px 30px -12px rgba(31,61,43,.6), 0 2px 6px rgba(20,28,23,.14); transition: transform .2s var(--ease), background-color .2s; }
+.fab { position: fixed; z-index: 45; right: max(20px, env(safe-area-inset-right, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 0 20px 0 16px; border-radius: 999px; background: var(--forest); color: #fff; font-size: 15px; font-weight: 700; box-shadow: 0 14px 30px -12px rgba(47,93,70,.6), 0 2px 6px rgba(20,28,23,.14); transition: transform .2s var(--ease), background-color .2s; }
 .fab { bottom: calc(20px + env(safe-area-inset-bottom, 0px) + var(--lift, 0px)); animation: fab-float 3s ease-in-out infinite; transition: bottom .35s var(--ease), background-color .2s; }
-.fab:hover { background: #17301F; animation-play-state: paused; }
-@keyframes fab-float { 0%, 100% { transform: translateY(0); box-shadow: 0 14px 30px -12px rgba(31,61,43,.6), 0 2px 6px rgba(20,28,23,.14); } 50% { transform: translateY(-5px); box-shadow: 0 20px 34px -14px rgba(31,61,43,.5), 0 2px 6px rgba(20,28,23,.1); } }
+.fab:hover { background: #27503C; animation-play-state: paused; }
+@keyframes fab-float { 0%, 100% { transform: translateY(0); box-shadow: 0 14px 30px -12px rgba(47,93,70,.6), 0 2px 6px rgba(20,28,23,.14); } 50% { transform: translateY(-5px); box-shadow: 0 20px 34px -14px rgba(47,93,70,.5), 0 2px 6px rgba(20,28,23,.1); } }
 @media (prefers-reduced-motion: reduce) { .fab { animation: none; } }
 .fab svg { width: 18px; height: 18px; }
 @media (max-width: 600px) {
