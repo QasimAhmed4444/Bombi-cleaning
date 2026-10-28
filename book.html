@@ -615,6 +615,16 @@
     @media (max-width: 600px) {
       .nav-pill .track { height: 40px; padding: 0 14px; font-size: 13.5px; }
     }
+    /* ───────── Transparent header: the page shows through until you scroll ───────── */
+    .header { position: sticky; background: transparent; border-bottom-color: transparent; box-shadow: none; transition: background-color .3s, box-shadow .3s, border-color .3s; }
+    .header.scrolled { background: rgba(250,247,241,.9); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom-color: var(--line); box-shadow: 0 6px 20px -16px rgba(24,33,28,.4); }
+    .on-photo .header:not(.scrolled) .logo img { filter: brightness(0) invert(1) drop-shadow(0 1px 6px rgba(0,0,0,.35)); }   /* white logo over the photo banner, dark once the header fills in */
+    .header .logo img { transition: filter .3s; }
+    .header.scrolled .logo img { filter: none; }
+    .header .burger { background: rgba(255,255,255,.88); }
+    /* the first banner slides up under the header */
+    .page-hero { margin-top: -72px; padding-top: calc(clamp(44px, 5.4vw, 78px) + 72px); }
+    @media (max-width: 600px) { .page-hero { margin-top: -68px; padding-top: calc(clamp(44px, 5.4vw, 78px) + 68px); } }
   </style>
 </head>
 <body class="no-js">
